@@ -11,4 +11,4 @@
 
 #
 
-This is a lair! It's really a lair! Sure it is.
+This is a lair! It really is a lair! I'm pretty sure it is.
