@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Alucard.png-90fc422d8f71e9762905e859bbd52a89.stex"
+path="res://.import/6.png-debb0f4230ee2a52210e5d49e1b2caa9.stex"
 
 [deps]
 
-source_file="res://Players/alucard/Alucard.png"
-dest_files=[ "res://.import/Alucard.png-90fc422d8f71e9762905e859bbd52a89.stex" ]
+source_file="res://Players/alucard/idle/6.png"
+dest_files=[ "res://.import/6.png-debb0f4230ee2a52210e5d49e1b2caa9.stex" ]
 
 [params]
 
