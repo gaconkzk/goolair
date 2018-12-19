@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/29.ogg-d3877aaec59fe3e84b68e6a42b5ec0ad.oggstr"
+
+[deps]
+
+source_file="res://clients/lijj/sounds/29.ogg"
+dest_files=[ "res://.import/29.ogg-d3877aaec59fe3e84b68e6a42b5ec0ad.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

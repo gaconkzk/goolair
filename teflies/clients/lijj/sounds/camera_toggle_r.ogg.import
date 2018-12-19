@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/camera_toggle_r.ogg-9bed1b3e75b0bed551f6d806706f7cdb.oggstr"
+
+[deps]
+
+source_file="res://clients/lijj/sounds/camera_toggle_r.ogg"
+dest_files=[ "res://.import/camera_toggle_r.ogg-9bed1b3e75b0bed551f6d806706f7cdb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

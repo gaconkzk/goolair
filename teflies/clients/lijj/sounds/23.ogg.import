@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/23.ogg-652ef21d0213053fcd141b7ce0f4c843.oggstr"
+
+[deps]
+
+source_file="res://clients/lijj/sounds/23.ogg"
+dest_files=[ "res://.import/23.ogg-652ef21d0213053fcd141b7ce0f4c843.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

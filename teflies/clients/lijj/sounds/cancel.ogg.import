@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cancel.ogg-74ff80793b2a652c41e3a63be79bbc9c.oggstr"
+
+[deps]
+
+source_file="res://clients/lijj/sounds/cancel.ogg"
+dest_files=[ "res://.import/cancel.ogg-74ff80793b2a652c41e3a63be79bbc9c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
