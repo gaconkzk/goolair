@@ -1,95 +1,302 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://jangrisser/ground_tiles.png" type="Texture" id=1]
+[ext_resource path="res://jangrisser/basicoutdoor64.PNG" type="Texture" id=2]
 
-[node name="Node" type="Node"]
+[node name="tiles" type="Node"]
 
-[node name="grass_1" type="Sprite" parent="."]
+[node name="ground_tiles" type="Node" parent="."]
+
+[node name="grass_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 20, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 64, 32, 32 )
 
-[node name="grass_2" type="Sprite" parent="."]
+[node name="grass_2" type="Sprite" parent="ground_tiles"]
 position = Vector2( 60, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 64, 32, 32 )
 
-[node name="grass_3" type="Sprite" parent="."]
+[node name="grass_3" type="Sprite" parent="ground_tiles"]
 position = Vector2( 100, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 96, 32, 32 )
 
-[node name="grass_4" type="Sprite" parent="."]
+[node name="grass_4" type="Sprite" parent="ground_tiles"]
 position = Vector2( 140, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 96, 32, 32 )
 
-[node name="stone_1" type="Sprite" parent="."]
-position = Vector2( 36, 240 )
+[node name="grass_water_1" type="Sprite" parent="ground_tiles"]
+position = Vector2( 90, 230 )
 texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 0, 32, 32 )
+
+[node name="grass_water_2" type="Sprite" parent="ground_tiles"]
+position = Vector2( 130, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 0, 32, 32 )
+
+[node name="grass_water_3" type="Sprite" parent="ground_tiles"]
+position = Vector2( 170, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 0, 32, 32 )
+
+[node name="grass_water_4" type="Sprite" parent="ground_tiles"]
+position = Vector2( 170, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 32, 32, 32 )
+
+[node name="grass_water_5" type="Sprite" parent="ground_tiles"]
+position = Vector2( 170, 310 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 64, 32, 32 )
+
+[node name="grass_water_6" type="Sprite" parent="ground_tiles"]
+position = Vector2( 130, 310 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 64, 32, 32 )
+
+[node name="grass_water_7" type="Sprite" parent="ground_tiles"]
+position = Vector2( 90, 310 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 64, 32, 32 )
+
+[node name="grass_water_8" type="Sprite" parent="ground_tiles"]
+position = Vector2( 90, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 32, 32, 32 )
+
+[node name="stone_1" type="Sprite" parent="ground_tiles"]
+position = Vector2( 36, 240 )
+texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 32, 416, 64, 64 )
 
-[node name="brick_1" type="Sprite" parent="."]
+[node name="brick_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 180, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 128, 96, 32, 32 )
 
-[node name="sand_high_1" type="Sprite" parent="."]
+[node name="sand_high_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 50, 120 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 512, 96, 160 )
 
-[node name="sand_low_1" type="Sprite" parent="."]
+[node name="sand_low_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 140, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 160, 608, 64, 64 )
 
-[node name="sand_skull_1" type="Sprite" parent="."]
+[node name="sand_skull_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 250, 120 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 256, 512, 128, 160 )
 
-[node name="sand_circle_1" type="Sprite" parent="."]
+[node name="sand_circle_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 220, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 414, 641, 32, 32 )
 
-[node name="sand_circle_2" type="Sprite" parent="."]
+[node name="sand_circle_2" type="Sprite" parent="ground_tiles"]
 position = Vector2( 370, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 416, 512, 96, 96 )
 
-[node name="sand_1" type="Sprite" parent="."]
+[node name="sand_1" type="Sprite" parent="ground_tiles"]
 position = Vector2( 124, 60 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 160, 512, 32, 32 )
 
-[node name="sand_2" type="Sprite" parent="."]
+[node name="sand_2" type="Sprite" parent="ground_tiles"]
 position = Vector2( 164, 60 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 192, 512, 32, 32 )
 
-[node name="sand_3" type="Sprite" parent="."]
+[node name="sand_3" type="Sprite" parent="ground_tiles"]
 position = Vector2( 124, 100 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 160, 544, 32, 32 )
 
-[node name="sand_4" type="Sprite" parent="."]
+[node name="sand_4" type="Sprite" parent="ground_tiles"]
 position = Vector2( 164, 100 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 192, 544, 32, 32 )
+
+[node name="sand_5" type="Sprite" parent="ground_tiles"]
+position = Vector2( 210, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 0, 32, 32 )
+
+[node name="sand_6" type="Sprite" parent="ground_tiles"]
+position = Vector2( 250, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 0, 32, 32 )
+
+[node name="sand_7" type="Sprite" parent="ground_tiles"]
+position = Vector2( 290, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 0, 32, 32 )
+
+[node name="sand_8" type="Sprite" parent="ground_tiles"]
+position = Vector2( 210, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 32, 32, 32 )
+
+[node name="sand_9" type="Sprite" parent="ground_tiles"]
+position = Vector2( 250, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 32, 32, 32 )
+
+[node name="sand_10" type="Sprite" parent="ground_tiles"]
+position = Vector2( 290, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 32, 32, 32 )
+
+[node name="sand_11" type="Sprite" parent="ground_tiles"]
+position = Vector2( 210, 310 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 64, 32, 32 )
+
+[node name="sand_12" type="Sprite" parent="ground_tiles"]
+position = Vector2( 250, 310 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 64, 32, 32 )
+
+[node name="sand_13" type="Sprite" parent="ground_tiles"]
+position = Vector2( 290, 310 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 64, 32, 32 )
+
+[node name="sand_14" type="Sprite" parent="ground_tiles"]
+position = Vector2( 330, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 0, 32, 32 )
+
+[node name="sand_15" type="Sprite" parent="ground_tiles"]
+position = Vector2( 370, 230 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 0, 32, 32 )
+
+[node name="sand_16" type="Sprite" parent="ground_tiles"]
+position = Vector2( 330, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 32, 32, 32 )
+
+[node name="sand_17" type="Sprite" parent="ground_tiles"]
+position = Vector2( 370, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 32, 32, 32 )
+
+[node name="sand_18" type="Sprite" parent="ground_tiles"]
+position = Vector2( 20, 350 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 128, 32, 32 )
+
+[node name="sand_19" type="Sprite" parent="ground_tiles"]
+position = Vector2( 60, 350 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 128, 32, 32 )
+
+[node name="sand_20" type="Sprite" parent="ground_tiles"]
+position = Vector2( 100, 350 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 128, 32, 32 )
+
+[node name="sand_21" type="Sprite" parent="ground_tiles"]
+position = Vector2( 20, 390 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 160, 32, 32 )
+
+[node name="sand_22" type="Sprite" parent="ground_tiles"]
+position = Vector2( 100, 390 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 160, 32, 32 )
+
+[node name="sand_23" type="Sprite" parent="ground_tiles"]
+position = Vector2( 20, 430 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 192, 32, 32 )
+
+[node name="sand_24" type="Sprite" parent="ground_tiles"]
+position = Vector2( 60, 430 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 192, 32, 32 )
+
+[node name="sand_25" type="Sprite" parent="ground_tiles"]
+position = Vector2( 100, 430 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 192, 32, 32 )
+
+[node name="sand_26" type="Sprite" parent="ground_tiles"]
+position = Vector2( 140, 350 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 128, 32, 32 )
+
+[node name="sand_27" type="Sprite" parent="ground_tiles"]
+position = Vector2( 140, 390 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 160, 32, 32 )
+
+[node name="sand_28" type="Sprite" parent="ground_tiles"]
+position = Vector2( 140, 430 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 192, 32, 32 )
+
+[node name="sand_29" type="Sprite" parent="ground_tiles"]
+position = Vector2( 180, 390 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 160, 32, 32 )
+
+[node name="sand_30" type="Sprite" parent="ground_tiles"]
+position = Vector2( 180, 430 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 192, 32, 32 )
