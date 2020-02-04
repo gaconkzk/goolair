@@ -18,6 +18,11 @@ _global_script_class_icons={
 config/name="goolair"
 config/icon="res://fly.png"
 
+[global]
+
+view=false
+2d=false
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0

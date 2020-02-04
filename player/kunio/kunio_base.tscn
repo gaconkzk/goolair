@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://kunio/kunio_base.gd" type="Script" id=1]
+[ext_resource path="res://kunio/sprites/horibata. Kunio-Kun no Nekketsu Soccer clone-2.png.png" type="Texture" id=2]
+[ext_resource path="res://kunio/sprites/horibata. Kunio-Kun no Nekketsu Soccer clone-1.png.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 11.4317
+height = 12.1976
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform vec4 white;
+
+void fragment() {
+  COLOR = texture(TEXTURE, UV);
+  COLOR.b = 1.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/white = null
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[node name="ppl" type="KinematicBody2D"]
+position = Vector2( 25, 30 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="collission" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 4 )
+frames = SubResource( 2 )
+animation = "run"
