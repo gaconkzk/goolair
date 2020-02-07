@@ -1,33 +1,37 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://kunio/kunio_base.gd" type="Script" id=1]
-[ext_resource path="res://kunio/sprites/horibata. Kunio-Kun no Nekketsu Soccer clone-2.png.png" type="Texture" id=2]
-[ext_resource path="res://kunio/sprites/horibata. Kunio-Kun no Nekketsu Soccer clone-1.png.png" type="Texture" id=3]
+[ext_resource path="res://kunio/assets/head_ukia_2.png" type="Texture" id=3]
+[ext_resource path="res://kunio/assets/body_ukia_1.png" type="Texture" id=5]
+[ext_resource path="res://kunio/assets/body_ukia_2.png" type="Texture" id=6]
+[ext_resource path="res://kunio/assets/hand_ukia_1.png" type="Texture" id=7]
+[ext_resource path="res://kunio/assets/hand_ukia_2.png" type="Texture" id=8]
+[ext_resource path="res://kunio/assets/head_ukia_1.png" type="Texture" id=9]
+[ext_resource path="res://kunio/fanim.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 11.4317
-height = 12.1976
+radius = 10.1416
+height = 13.9894
 
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
+[sub_resource type="LargeTexture" id=2]
+flags = 4
+_data = [ Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 7 ), Vector2( 0, 0 ), ExtResource( 9 ), Vector2( 64, 64 ) ]
 
-uniform vec4 white;
+[sub_resource type="LargeTexture" id=3]
+flags = 4
+_data = [ Vector2( 0, 0 ), ExtResource( 6 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 64, 64 ) ]
 
-void fragment() {
-  COLOR = texture(TEXTURE, UV);
-  COLOR.b = 1.0;
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/white = null
-
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 7.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": false,
+"name": "stand",
+"speed": 0.0
 } ]
 
 [node name="ppl" type="KinematicBody2D"]
@@ -41,7 +45,7 @@ __meta__ = {
 [node name="collission" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 4 )
-frames = SubResource( 2 )
-animation = "run"
+[node name="fanim" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
+animation = "stand"
+script = ExtResource( 10 )

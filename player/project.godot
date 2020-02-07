@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "AnimatedSprite",
+"class": "NekAnimatedSprite",
+"language": "GDScript",
+"path": "res://kunio/fanim.gd"
+} ]
 _global_script_class_icons={
-
+"NekAnimatedSprite": ""
 }
 
 [application]
@@ -20,8 +25,8 @@ config/icon="res://fly.png"
 
 [global]
 
-view=false
-2d=false
+view=true
+2d=true
 
 [rendering]
 
