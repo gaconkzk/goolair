@@ -17,6 +17,13 @@ var hand_texture_2 = preload("res://kunio/assets/hand_ukia_2.png")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #  pass
+export(Color, RGBA) var clothes_color = Color("#ffffff") setget update_clothes
+
+func update_clothes(value):
+  clothes_color = value
+  if value:
+    self.material.set_shader_param("clothes", value)
+
 
 func create_frames(fs):
   var farr = []

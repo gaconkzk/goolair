@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 
 
@@ -6,9 +7,10 @@ extends KinematicBody2D
 # var b = "text"
 
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
   pass
-
+  
 func run():
   if Input.is_action_pressed("ui_left"):
     $fanim.flip_h = true

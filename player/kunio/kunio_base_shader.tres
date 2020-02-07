@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 clothes;
+
+const vec4 white = vec4(1.0, 1.0, 1.0, 1.0);
+
+void fragment() {
+  vec4 curr_color = texture(TEXTURE,UV); // Get current color of pixel
+  
+  if (curr_color == white) {
+    COLOR = clothes
+  }
+}"
+
+[resource]
+shader = SubResource( 5 )
+shader_param/clothes = null
