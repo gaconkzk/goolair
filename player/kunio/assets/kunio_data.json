@@ -1,0 +1,35 @@
+{
+  "default": "stand",
+  "frames": [
+    {
+      "size": { "width": 64, "height": 64 },
+      "pieces": [
+        "res://kunio/assets/body_ukia_1.png",
+        "res://kunio/assets/head_ukia_1.png",
+        "res://kunio/assets/hand_ukia_1.png"
+      ]
+    },
+    {
+      "size": { "width": 64, "height": 64 },
+      "pieces": [
+        "res://kunio/assets/body_ukia_2.png",
+        "res://kunio/assets/head_ukia_2.png",
+        "res://kunio/assets/hand_ukia_2.png"
+      ]
+    },
+  ],
+  "animations": [
+    {
+      "name": "stand",
+      "frames": [0],
+      "speed": 0,
+      "loop": false
+    },
+    {
+      "name": "run",
+      "frames": [0, 1],
+      "speed": 7,
+      "loop": true
+    },
+  ]
+}

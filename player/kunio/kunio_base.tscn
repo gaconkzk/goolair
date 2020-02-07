@@ -15,11 +15,11 @@ height = 13.9894
 
 [sub_resource type="LargeTexture" id=2]
 flags = 4
-_data = [ Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 7 ), Vector2( 0, 0 ), ExtResource( 9 ), Vector2( 64, 64 ) ]
+_data = [ Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 9 ), Vector2( 0, 0 ), ExtResource( 7 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="LargeTexture" id=3]
 flags = 4
-_data = [ Vector2( 0, 0 ), ExtResource( 6 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 64, 64 ) ]
+_data = [ Vector2( 0, 0 ), ExtResource( 6 ), Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -49,3 +49,4 @@ shape = SubResource( 1 )
 frames = SubResource( 4 )
 animation = "stand"
 script = ExtResource( 10 )
+sprite_metadata = "res://kunio/assets/kunio_data.json"

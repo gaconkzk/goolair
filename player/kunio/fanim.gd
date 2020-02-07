@@ -4,7 +4,7 @@ extends AnimatedSprite
 class_name NekAnimatedSprite
 
 # String is a path to a directory.
-export(String, FILE) var sprite_metadata = null
+export(String, FILE) var sprite_metadata setget set_sprite_metadata
 
 var body_texture_1 = preload("res://kunio/assets/body_ukia_1.png")
 var head_texture_1 = preload("res://kunio/assets/head_ukia_1.png")
@@ -14,55 +14,45 @@ var body_texture_2 = preload("res://kunio/assets/body_ukia_2.png")
 var head_texture_2 = preload("res://kunio/assets/head_ukia_2.png")
 var hand_texture_2 = preload("res://kunio/assets/hand_ukia_2.png")
 
-func _get_configuration_warning() -> String:
-  if not sprite_metadata:
-    return 'Assets folder must be declared.'
-  return ''
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  pass
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #  pass
-func _init():
-  if not sprite_metadata:
-    push_warning("SpriteMetadata must be existed.")
-    return
 
-  var data_file = File.new()
-  data_file.open(sprite_metadata, data_file.READ)
-  var data = data_file.get_as_text()
-  data_file.close()
-  
-  print(data)
+func create_frames(fs):
+  var farr = []
+  if fs.size() > 0:
+    for f in fs:
+      var texture = LargeTexture.new()
+      texture.set_size(Vector2(f["size"]["width"], f["size"]["height"]))
+      for pieces in f["pieces"]:
+        var prltx = load(pieces)
+        texture.add_piece(Vector2(0, 0), prltx)
+      farr.append(texture)
+  return farr
 
-  self.frames = SpriteFrames.new()
-  
-  var sf_full = LargeTexture.new()
-  sf_full.set_size(Vector2(64,64))
-  sf_full.add_piece(Vector2(0,0), body_texture_1)
-  sf_full.add_piece(Vector2(0,0), hand_texture_1)
-  sf_full.add_piece(Vector2(0,0), head_texture_1)
-  
-  var sf_full_1 = LargeTexture.new()
-  sf_full_1.set_size(Vector2(64,64))
-  sf_full_1.add_piece(Vector2(0,0), body_texture_2)
-  sf_full_1.add_piece(Vector2(0,0), hand_texture_2)
-  sf_full_1.add_piece(Vector2(0,0), head_texture_2)
-  
-  self.frames = SpriteFrames.new()
-  self.frames.remove_animation("default")
-  
-  self.frames.add_animation("stand")
-  self.frames.add_frame("stand", sf_full)
-  self.frames.set_animation_speed("stand", 0)
-  self.frames.set_animation_loop("stand", false)
-  
-  self.frames.add_animation("run")
-  self.frames.add_frame("run", sf_full)
-  self.frames.add_frame("run", sf_full_1)
-  self.frames.set_animation_speed("run", 7)
-  
-  self.animation = "stand"
+func create_animations(farr, animations):
+  var sf = SpriteFrames.new()
+  sf.remove_animation("default")
+  if animations.size() > 0:
+    for anim in animations:
+      sf.add_animation(anim["name"])
+      for idx in anim["frames"]:
+        sf.add_frame(anim["name"], farr[idx])
+      sf.set_animation_speed(anim["name"], anim["speed"])
+      sf.set_animation_loop(anim["name"], anim["loop"])
+  return sf
+
+func set_sprite_metadata(value):
+  sprite_metadata = value
+  if value:
+    var data_file = File.new()
+    data_file.open(sprite_metadata, data_file.READ)
+    var data = data_file.get_as_text()
+    data_file.close()
+    
+    var dict = parse_json(data)
+    var farray = create_frames(dict["frames"])
+    frames = create_animations(farray, dict["animations"])
+    animation = dict["default"]
+  else:
+    frames = null
