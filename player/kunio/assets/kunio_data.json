@@ -4,19 +4,35 @@
     {
       "size": { "width": 64, "height": 64 },
       "pieces": [
-        "res://kunio/assets/body_ukia_1.png",
-        "res://kunio/assets/head_ukia_1.png",
-        "res://kunio/assets/hand_ukia_1.png"
+        "res://kunio/assets/run/body_ukia_1.png",
+        "res://kunio/assets/run/head_ukia_1.png",
+        "res://kunio/assets/run/hand_ukia_1.png"
       ]
     },
     {
       "size": { "width": 64, "height": 64 },
       "pieces": [
-        "res://kunio/assets/body_ukia_2.png",
-        "res://kunio/assets/head_ukia_2.png",
-        "res://kunio/assets/hand_ukia_2.png"
+        "res://kunio/assets/run/body_ukia_2.png",
+        "res://kunio/assets/run/head_ukia_2.png",
+        "res://kunio/assets/run/hand_ukia_2.png"
       ]
     },
+    {
+      "size": { "width": 64, "height": 64 },
+      "pieces": [
+        "res://kunio/assets/walk/body_1.png",
+        "res://kunio/assets/walk/head_1.png",
+        "res://kunio/assets/walk/hand_1.png"
+      ]
+    },
+    {
+      "size": { "width": 64, "height": 64 },
+      "pieces": [
+        "res://kunio/assets/walk/body_2.png",
+        "res://kunio/assets/walk/head_2.png",
+        "res://kunio/assets/walk/hand_2.png"
+      ]
+    }
   ],
   "animations": [
     {
@@ -31,5 +47,11 @@
       "speed": 7,
       "loop": true
     },
+    {
+      "name": "walk",
+      "frames": [2, 3],
+      "speed": 3,
+      "loop": true
+    }
   ]
 }

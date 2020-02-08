@@ -1,13 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://kunio/kunio_base.gd" type="Script" id=1]
-[ext_resource path="res://kunio/assets/body_ukia_1.png" type="Texture" id=2]
-[ext_resource path="res://kunio/assets/head_ukia_2.png" type="Texture" id=3]
-[ext_resource path="res://kunio/assets/hand_ukia_1.png" type="Texture" id=4]
-[ext_resource path="res://kunio/assets/head_ukia_1.png" type="Texture" id=5]
-[ext_resource path="res://kunio/assets/body_ukia_2.png" type="Texture" id=6]
-[ext_resource path="res://kunio/assets/hand_ukia_2.png" type="Texture" id=8]
+[ext_resource path="res://kunio/assets/run/body_ukia_1.png" type="Texture" id=2]
+[ext_resource path="res://kunio/assets/run/head_ukia_2.png" type="Texture" id=3]
+[ext_resource path="res://kunio/assets/run/hand_ukia_1.png" type="Texture" id=4]
+[ext_resource path="res://kunio/assets/run/head_ukia_1.png" type="Texture" id=5]
+[ext_resource path="res://kunio/assets/run/body_ukia_2.png" type="Texture" id=6]
+[ext_resource path="res://kunio/assets/walk/head_1.png" type="Texture" id=7]
+[ext_resource path="res://kunio/assets/run/hand_ukia_2.png" type="Texture" id=8]
+[ext_resource path="res://kunio/assets/walk/head_2.png" type="Texture" id=9]
 [ext_resource path="res://kunio/fanim.gd" type="Script" id=10]
+[ext_resource path="res://kunio/assets/walk/body_1.png" type="Texture" id=11]
+[ext_resource path="res://kunio/assets/walk/hand_1.png" type="Texture" id=12]
+[ext_resource path="res://kunio/assets/walk/body_2.png" type="Texture" id=13]
+[ext_resource path="res://kunio/assets/walk/hand_2.png" type="Texture" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 10.1416
@@ -22,27 +28,19 @@ uniform vec4 clothes = vec4(255.0, 253.0, 253.0, 1.0);
 const vec4 white = vec4(255.0, 255.0, 255.0, 1.0);
 
 void fragment() {
-  mediump vec4 alpha = texture(TEXTURE,UV); // Get current color of pixel
-  if(alpha.r == 1.0 && alpha.g == 1.0 && alpha.b == 1.0 && alpha.a == 1.0) {
-      alpha = clothes;
+  vec4 current_color = texture(TEXTURE,UV); // Get current color of pixel
+  if(current_color.r == 1.0 && current_color.g == 1.0 && current_color.b == 1.0 && current_color.a == 1.0) {
+    if (UV.y >= 0.375) {
+      current_color = clothes; // Change it to clothes color
+    }
   }
   
-  COLOR = alpha;
-//
-//  if (curr_color.r == white.r) {
-//    COLOR = clothes;
-//  } else if (curr_color.g == white.g) {
-//    COLOR = clothes;
-//  } else if (curr_color.b == white.b) {
-//    COLOR = clothes;
-//  } else {
-//    COLOR = curr_color;
-//   }
+  COLOR = current_color;
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/clothes = Color( 0.537255, 0.478431, 0.478431, 1 )
+shader_param/clothes = Color( 0.529412, 0.294118, 0.294118, 1 )
 
 [sub_resource type="LargeTexture" id=4]
 _data = [ Vector2( 0, 0 ), ExtResource( 2 ), Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 4 ), Vector2( 64, 64 ) ]
@@ -50,12 +48,23 @@ _data = [ Vector2( 0, 0 ), ExtResource( 2 ), Vector2( 0, 0 ), ExtResource( 5 ), 
 [sub_resource type="LargeTexture" id=5]
 _data = [ Vector2( 0, 0 ), ExtResource( 6 ), Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 64, 64 ) ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="LargeTexture" id=6]
+_data = [ Vector2( 0, 0 ), ExtResource( 11 ), Vector2( 0, 0 ), ExtResource( 7 ), Vector2( 0, 0 ), ExtResource( 12 ), Vector2( 64, 64 ) ]
+
+[sub_resource type="LargeTexture" id=7]
+_data = [ Vector2( 0, 0 ), ExtResource( 13 ), Vector2( 0, 0 ), ExtResource( 9 ), Vector2( 0, 0 ), ExtResource( 14 ), Vector2( 64, 64 ) ]
+
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "run",
 "speed": 7.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
 }, {
 "frames": [ SubResource( 4 ) ],
 "loop": false,
@@ -76,9 +85,8 @@ shape = SubResource( 1 )
 
 [node name="fanim" type="AnimatedSprite" parent="."]
 material = SubResource( 3 )
-frames = SubResource( 6 )
-animation = "run"
-flip_h = true
+frames = SubResource( 8 )
+animation = "stand"
 script = ExtResource( 10 )
 sprite_metadata = "res://kunio/assets/kunio_data.json"
-clothes_color = Color( 0.537255, 0.478431, 0.478431, 1 )
+clothes_color = Color( 0.529412, 0.294118, 0.294118, 1 )

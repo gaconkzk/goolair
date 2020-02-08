@@ -6,14 +6,6 @@ class_name NekAnimatedSprite
 # String is a path to a directory.
 export(String, FILE) var sprite_metadata setget set_sprite_metadata
 
-var body_texture_1 = preload("res://kunio/assets/body_ukia_1.png")
-var head_texture_1 = preload("res://kunio/assets/head_ukia_1.png")
-var hand_texture_1 = preload("res://kunio/assets/hand_ukia_1.png")
-
-var body_texture_2 = preload("res://kunio/assets/body_ukia_2.png")
-var head_texture_2 = preload("res://kunio/assets/head_ukia_2.png")
-var hand_texture_2 = preload("res://kunio/assets/hand_ukia_2.png")
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #  pass

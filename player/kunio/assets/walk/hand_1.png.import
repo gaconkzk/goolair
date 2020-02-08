@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hand_ukia_1.png-25cd4a7ace4887e0cf749423b5c8d97c.stex"
+path="res://.import/hand_1.png-32cd2ba44672868cd110c1f9d6420dd9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kunio/assets/hand_ukia_1.png"
-dest_files=[ "res://.import/hand_ukia_1.png-25cd4a7ace4887e0cf749423b5c8d97c.stex" ]
+source_file="res://kunio/assets/walk/hand_1.png"
+dest_files=[ "res://.import/hand_1.png-32cd2ba44672868cd110c1f9d6420dd9.stex" ]
 
 [params]
 
