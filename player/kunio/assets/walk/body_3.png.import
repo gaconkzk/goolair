@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/head_ukia_2.png-086634309cb1d9f30dbca1dbb359b890.stex"
+path="res://.import/body_3.png-62cf36c7c614c7b74aaade4064e68924.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kunio/assets/run/head_ukia_2.png"
-dest_files=[ "res://.import/head_ukia_2.png-086634309cb1d9f30dbca1dbb359b890.stex" ]
+source_file="res://kunio/assets/walk/body_3.png"
+dest_files=[ "res://.import/body_3.png-62cf36c7c614c7b74aaade4064e68924.stex" ]
 
 [params]
 

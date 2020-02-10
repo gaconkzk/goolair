@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hand_ukia_1.png-ef7eaa917e525eb9851ced880f01ea26.stex"
+path="res://.import/nekketsu_warriors_of_fate.png-265e9dd9c555a06d44f7a193638050c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kunio/assets/run/hand_ukia_1.png"
-dest_files=[ "res://.import/hand_ukia_1.png-ef7eaa917e525eb9851ced880f01ea26.stex" ]
+source_file="res://Players/kunio/sample/nekketsu_warriors_of_fate.png"
+dest_files=[ "res://.import/nekketsu_warriors_of_fate.png-265e9dd9c555a06d44f7a193638050c3.stex" ]
 
 [params]
 

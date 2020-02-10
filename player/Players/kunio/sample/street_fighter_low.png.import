@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/body_ukia_1.png-7309ea761a35943e5442779d5c0e7332.stex"
+path="res://.import/street_fighter_low.png-a187ad0b4bfecde029a8229e829aa31e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kunio/assets/run/body_ukia_1.png"
-dest_files=[ "res://.import/body_ukia_1.png-7309ea761a35943e5442779d5c0e7332.stex" ]
+source_file="res://Players/kunio/sample/street_fighter_low.png"
+dest_files=[ "res://.import/street_fighter_low.png-a187ad0b4bfecde029a8229e829aa31e.stex" ]
 
 [params]
 

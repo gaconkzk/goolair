@@ -6,6 +6,8 @@ class_name NekAnimatedSprite
 # String is a path to a directory.
 export(String, FILE) var sprite_metadata setget set_sprite_metadata
 
+export(String, "stand", "run", "walk") var default_animation setget update_default_animation
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #  pass
@@ -16,6 +18,9 @@ func update_clothes(value):
   if value:
     self.material.set_shader_param("clothes", value)
 
+func update_default_animation(value):
+  default_animation = value
+  self.animation = default_animation
 
 func create_frames(fs):
   var farr = []
