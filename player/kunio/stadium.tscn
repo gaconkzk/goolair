@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://kunio/assets/stadium/nekketsu-stadium.png" type="Texture" id=1]
+[ext_resource path="res://kunio/stadium.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 355, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 392, 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 152, 1 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 152, 1 )
+
+[node name="stadium" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="top" type="Area2D" parent="."]
+
+[node name="shape1" type="CollisionShape2D" parent="top"]
+position = Vector2( 424, 12 )
+shape = SubResource( 1 )
+
+[node name="bottom" type="Area2D" parent="."]
+
+[node name="shape2" type="CollisionShape2D" parent="bottom"]
+position = Vector2( 424, 311 )
+shape = SubResource( 2 )
+
+[node name="left" type="Area2D" parent="."]
+
+[node name="shape3" type="CollisionShape2D" parent="left"]
+position = Vector2( 50, 162 )
+rotation = 1.69471
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="right" type="Area2D" parent="."]
+
+[node name="shape4" type="CollisionShape2D" parent="right"]
+position = Vector2( 798, 162 )
+rotation = -1.69471
+scale = Vector2( 1, 1 )
+shape = SubResource( 4 )
