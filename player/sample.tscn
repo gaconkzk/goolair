@@ -6,12 +6,12 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="YSort" type="YSort" parent="."]
+[node name="z-layer" type="YSort" parent="."]
 
-[node name="ppl" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 69.35, 78.85 )
+[node name="ppl" parent="z-layer" instance=ExtResource( 1 )]
+position = Vector2( 407.245, 165.642 )
 
-[node name="ball" parent="YSort" instance=ExtResource( 3 )]
+[node name="ball" parent="z-layer" instance=ExtResource( 3 )]
 position = Vector2( 424, 159 )
 
-[node name="stadium" parent="YSort" instance=ExtResource( 2 )]
+[node name="stadium" parent="z-layer" instance=ExtResource( 2 )]

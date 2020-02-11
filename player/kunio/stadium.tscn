@@ -39,7 +39,6 @@ shape = SubResource( 2 )
 [node name="shape3" type="CollisionShape2D" parent="left"]
 position = Vector2( 50, 162 )
 rotation = 1.69471
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 [node name="right" type="Area2D" parent="."]
@@ -47,5 +46,4 @@ shape = SubResource( 3 )
 [node name="shape4" type="CollisionShape2D" parent="right"]
 position = Vector2( 798, 162 )
 rotation = -1.69471
-scale = Vector2( 1, 1 )
 shape = SubResource( 4 )

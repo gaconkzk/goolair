@@ -1,5 +1,5 @@
 tool
-extends KinematicBody2D
+extends Area2D
 
 
 # Declare member variables here. Examples:

@@ -18,12 +18,7 @@
 [ext_resource path="res://kunio/assets/walk/hand_4.png" type="Texture" id=16]
 [ext_resource path="res://kunio/assets/walk/body_4.png" type="Texture" id=17]
 
-[sub_resource type="CapsuleShape2D" id=1]
-custom_solver_bias = 1.0
-radius = 10.9636
-height = 24.3998
-
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 //uniform sampler2D diffuse; // replaces your line 1
@@ -42,59 +37,60 @@ void fragment() {
   COLOR = current_color;
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/clothes = Color( 1, 1, 1, 1 )
 
-[sub_resource type="LargeTexture" id=4]
+[sub_resource type="LargeTexture" id=3]
 _data = [ Vector2( 0, 0 ), ExtResource( 2 ), Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 4 ), Vector2( 64, 64 ) ]
 
-[sub_resource type="LargeTexture" id=5]
+[sub_resource type="LargeTexture" id=4]
 _data = [ Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 6 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 64, 64 ) ]
 
-[sub_resource type="LargeTexture" id=6]
+[sub_resource type="LargeTexture" id=5]
 _data = [ Vector2( 0, 0 ), ExtResource( 11 ), Vector2( 0, 0 ), ExtResource( 7 ), Vector2( 0, 0 ), ExtResource( 12 ), Vector2( 64, 64 ) ]
 
-[sub_resource type="LargeTexture" id=7]
+[sub_resource type="LargeTexture" id=6]
 _data = [ Vector2( 0, 0 ), ExtResource( 13 ), Vector2( 0, 0 ), ExtResource( 9 ), Vector2( 0, 0 ), ExtResource( 14 ), Vector2( 64, 64 ) ]
 
-[sub_resource type="LargeTexture" id=8]
+[sub_resource type="LargeTexture" id=7]
 _data = [ Vector2( 0, 0 ), ExtResource( 17 ), Vector2( 0, 0 ), ExtResource( 15 ), Vector2( 0, 0 ), ExtResource( 16 ), Vector2( 64, 64 ) ]
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 3 ) ],
+"loop": false,
+"name": "stand",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "run",
 "speed": 7.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 6 ), SubResource( 8 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 7 ) ],
 "loop": true,
 "name": "walk",
 "speed": 6.0
-}, {
-"frames": [ SubResource( 4 ) ],
-"loop": false,
-"name": "stand",
-"speed": 0.0
 } ]
 
-[node name="ppl" type="KinematicBody2D"]
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_horizontal_guides_": [  ],
-"_edit_vertical_guides_": [  ]
-}
+[sub_resource type="CapsuleShape2D" id=9]
+custom_solver_bias = 1.0
+radius = 10.9636
+height = 24.3998
 
-[node name="collission" type="CollisionShape2D" parent="."]
-scale = Vector2( 1, 0.1 )
-shape = SubResource( 1 )
+[node name="ppl" type="Area2D"]
+script = ExtResource( 1 )
 
 [node name="fanim" type="AnimatedSprite" parent="."]
-material = SubResource( 3 )
-frames = SubResource( 9 )
+material = SubResource( 2 )
+frames = SubResource( 8 )
 animation = "walk"
 offset = Vector2( 0, -16 )
 script = ExtResource( 10 )
 sprite_metadata = "res://kunio/assets/kunio_data.json"
 default_animation = "run"
+
+[node name="collission" type="CollisionShape2D" parent="."]
+scale = Vector2( 1, 0.1 )
+shape = SubResource( 9 )

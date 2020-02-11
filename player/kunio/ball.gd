@@ -6,8 +6,8 @@ extends KinematicBody2D
 # var b = "text"
 var velocity = Vector2()
 var rotation_dir = 0
-var rotation_speed = 5
-var speed = 200
+var rotation_speed = 2
+var speed = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
