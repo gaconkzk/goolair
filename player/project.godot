@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="goolair"
+run/main_scene="res://sample.tscn"
 config/icon="res://fly.png"
 
 [display]
@@ -34,8 +35,8 @@ window/stretch/aspect="keep"
 
 [global]
 
-view=true
-2d=true
+view=false
+2d=false
 
 [importer_defaults]
 
@@ -91,8 +92,12 @@ ui_down={
  ]
 }
 
+[node]
+
+name_num_separator=2
+name_casing=2
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-environment/default_environment="res://default_env.tres"
