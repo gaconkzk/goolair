@@ -4,8 +4,8 @@
 [ext_resource path="res://kunio/ball.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 1.43725
-height = 9.80229
+radius = 1.0
+height = 12.0
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -28,20 +28,21 @@ animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "run",
-"speed": 12.0
+"speed": 5.0
 } ]
 
 [node name="ball" type="KinematicBody2D"]
 collision/safe_margin = 0.8
+motion/sync_to_physics = true
 script = ExtResource( 2 )
 
 [node name="collide" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1.00807 )
+position = Vector2( 0, -1 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="img" type="AnimatedSprite" parent="."]
-position = Vector2( 0.0659714, -0.136658 )
+position = Vector2( 0.0236502, 0 )
 frames = SubResource( 6 )
 animation = "run"
 frame = 2

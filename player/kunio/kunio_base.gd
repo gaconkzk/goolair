@@ -66,6 +66,7 @@ func _physics_process(delta):
   var velo = move(delta)
   position += velo
   if kept_ball:
-    kept_ball.position = position
-    kept_ball.position.x += 10*kept_ball_dir
-    kept_ball.position.y += 1
+    var new_pos = position
+    new_pos.x += 10*kept_ball_dir
+    new_pos.y += 1
+    kept_ball.position = new_pos
