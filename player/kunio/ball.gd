@@ -37,6 +37,7 @@ func _physics_process(delta):
 
   if flying:
     move_and_slide(Vector2(150, 150) * delta * 15)
+
 func _process(_delta):
   $img.playing = rolling
   if prev_dir != dir:

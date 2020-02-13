@@ -49,7 +49,6 @@ frame = 2
 offset = Vector2( 0, -7 )
 
 [node name="ballcam" type="Camera2D" parent="."]
-visible = false
 current = true
 limit_left = 0
 limit_top = 0
