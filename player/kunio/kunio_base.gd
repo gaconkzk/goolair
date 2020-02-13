@@ -11,7 +11,6 @@ var kept_ball
 var kept_ball_dir = 1
 
 func _ready():
-#  self.connect("area_entered", self, "hithithit")
   self.connect("body_entered", self, "meet")
 
 func meet(hit_by):
@@ -37,6 +36,10 @@ func run():
 func stop():
   $fanim.stop()
   $fanim.frame = 0
+  
+func shoot():
+  kept_ball.fly()
+  kept_ball = null
 
 func move(delta):
   var velocity = Vector2()
@@ -65,6 +68,9 @@ func _process(delta):
 func _physics_process(delta):
   var velo = move(delta)
   position += velo
+  if kept_ball:
+    if Input.is_action_pressed("shot"):
+      shoot()
   if kept_ball:
     var new_pos = position
     new_pos.x += 10*kept_ball_dir

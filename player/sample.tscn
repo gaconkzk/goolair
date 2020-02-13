@@ -9,9 +9,10 @@
 [node name="z-layer" type="YSort" parent="."]
 
 [node name="ball" parent="z-layer" instance=ExtResource( 3 )]
-position = Vector2( 424, 159 )
+position = Vector2( 438, 158 )
+motion/sync_to_physics = false
 
 [node name="ppl" parent="z-layer" instance=ExtResource( 1 )]
-position = Vector2( 346.25, 168.392 )
+position = Vector2( 422.44, 160.392 )
 
 [node name="stadium" parent="z-layer" instance=ExtResource( 2 )]
