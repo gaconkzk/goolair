@@ -38,8 +38,7 @@ func stop():
   
 func shoot():
   if kept_ball:
-    var target = position + Vector2(50, 25)
-    kept_ball.look_at()
+#    kept_ball.look_at(target)
     kept_ball.apply_impulse(Vector2(50, 35), Vector2(150, 2))
     kept_ball.is_sticking = false
     kept_ball.keeper = null
