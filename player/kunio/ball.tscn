@@ -31,9 +31,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="ball" type="KinematicBody2D"]
-collision/safe_margin = 0.8
-motion/sync_to_physics = true
+[node name="ball" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="collide" type="CollisionShape2D" parent="."]
@@ -48,12 +47,16 @@ animation = "run"
 frame = 2
 offset = Vector2( 0, -7 )
 
-[node name="ballcam" type="Camera2D" parent="."]
+[node name="camera_2d" type="Camera2D" parent="."]
 current = true
 limit_left = 0
 limit_top = 0
 limit_right = 848
 limit_bottom = 318
+limit_smoothed = true
 drag_margin_h_enabled = true
-drag_margin_left = 0.25
-drag_margin_right = 0.25
+drag_margin_v_enabled = true
+drag_margin_left = 0.35
+drag_margin_top = 0.45
+drag_margin_right = 0.35
+drag_margin_bottom = 0.45

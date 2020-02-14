@@ -5,14 +5,16 @@
 [ext_resource path="res://kunio/ball.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( 1, 0 )
 
 [node name="z-layer" type="YSort" parent="."]
 
 [node name="ppl" parent="z-layer" instance=ExtResource( 1 )]
-position = Vector2( 413.435, 151.459 )
+position = Vector2( 344.085, 137.515 )
 
 [node name="stadium" parent="z-layer" instance=ExtResource( 2 )]
+position = Vector2( -8, -3 )
 
 [node name="ball" parent="z-layer" instance=ExtResource( 3 )]
 position = Vector2( 424, 149 )
-motion/sync_to_physics = false
+mode = 2
