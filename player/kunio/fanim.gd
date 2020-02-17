@@ -8,26 +8,24 @@ export(String, FILE) var sprite_metadata setget set_sprite_metadata
 
 export(String, "stand", "run", "walk") var default_animation setget update_default_animation
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#  pass
-export(Color, RGBA) var clothes_color = Color("#ffffff") setget update_clothes
+var head = "kunio" setget set_head
 
-func update_clothes(value):
-  clothes_color = value
-  if value:
-    self.material.set_shader_param("clothes", value)
+func set_head(value):
+  # update head
+  head = value
+  set_sprite_metadata(sprite_metadata)
 
 func update_default_animation(value):
   default_animation = value
   self.animation = default_animation
 
-func create_frames(fs):
+func create_frames(head, fs):
   var farr = []
   if fs.size() > 0:
     for f in fs:
       var texture = LargeTexture.new()
       texture.set_size(Vector2(f["size"]["width"], f["size"]["height"]))
+      texture.add_piece(Vector2(), head)
       for pieces in f["pieces"]:
         var prltx = load(pieces)
         texture.add_piece(Vector2(0, 0), prltx)
@@ -46,6 +44,17 @@ func create_animations(farr, animations):
       sf.set_animation_loop(anim["name"], anim["loop"])
   return sf
 
+func create_head(dict_head, path):
+  var h
+  if head:
+    h = head
+  else:
+    h = dict_head
+  
+  var p = path if path else "res://kunio/assets/parts"
+  var head_texture = load("%s/head/%s.png" % [p, h])
+  return head_texture
+
 func set_sprite_metadata(value):
   sprite_metadata = value
   if value:
@@ -55,8 +64,10 @@ func set_sprite_metadata(value):
     data_file.close()
     
     var dict = parse_json(data)
-    var farray = create_frames(dict["frames"])
+    var head = create_head(dict["head"], dict["parts"])
+    var farray = create_frames(head, dict["frames"])
     frames = create_animations(farray, dict["animations"])
     animation = dict["default"]
   else:
     frames = null
+

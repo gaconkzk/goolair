@@ -1,11 +1,12 @@
 {
   "default": "stand",
+  "head":  "kunio",
+  "parts": "res://kunio/assets/parts",
   "frames": [
     {
       "size": { "width": 64, "height": 64 },
       "pieces": [
         "res://kunio/assets/run/body_1.png",
-        "res://kunio/assets/run/head_1.png",
         "res://kunio/assets/run/hand_1.png"
       ]
     },
@@ -13,7 +14,6 @@
       "size": { "width": 64, "height": 64 },
       "pieces": [
         "res://kunio/assets/run/body_2.png",
-        "res://kunio/assets/run/head_2.png",
         "res://kunio/assets/run/hand_2.png"
       ]
     },
@@ -21,7 +21,6 @@
       "size": { "width": 64, "height": 64 },
       "pieces": [
         "res://kunio/assets/walk/body_1.png",
-        "res://kunio/assets/walk/head_1.png",
         "res://kunio/assets/walk/hand_1.png"
       ]
     },
@@ -29,7 +28,6 @@
       "size": { "width": 64, "height": 64 },
       "pieces": [
         "res://kunio/assets/walk/body_2.png",
-        "res://kunio/assets/walk/head_2.png",
         "res://kunio/assets/walk/hand_2.png"
       ]
     },
@@ -37,7 +35,6 @@
       "size": { "width": 64, "height": 64 },
       "pieces": [
         "res://kunio/assets/walk/body_3.png",
-        "res://kunio/assets/walk/head_3.png",
         "res://kunio/assets/walk/hand_3.png"
       ]
     },
@@ -45,7 +42,6 @@
       "size": { "width": 64, "height": 64 },
       "pieces": [
         "res://kunio/assets/walk/body_4.png",
-        "res://kunio/assets/walk/head_4.png",
         "res://kunio/assets/walk/hand_4.png"
       ]
     }

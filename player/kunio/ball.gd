@@ -20,6 +20,11 @@ func _ready():
 #func fly():
 #  apply_impulse(Vector2(), Vector2(100, 0))
 
+
+func reset():
+  angular_velocity = 0.0
+  linear_velocity = Vector2()
+
 func update_moving_and_direction():
   var dist = position - prev_pos
   moving = dist.x != 0 || dist.y != 0
