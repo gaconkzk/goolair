@@ -2,7 +2,7 @@
 
 [ext_resource path="res://kunio/kunio_base.gd" type="Script" id=1]
 [ext_resource path="res://kunio/assets/run/body_1.png" type="Texture" id=2]
-[ext_resource path="res://kunio/assets/parts/head/kunio.png" type="Texture" id=3]
+[ext_resource path="res://kunio/assets/parts/head_side/kunio.png" type="Texture" id=3]
 [ext_resource path="res://kunio/assets/run/hand_1.png" type="Texture" id=4]
 [ext_resource path="res://kunio/assets/run/body_2.png" type="Texture" id=5]
 [ext_resource path="res://kunio/kunio_base_shader.tres" type="Material" id=6]
@@ -14,6 +14,7 @@
 [ext_resource path="res://kunio/assets/walk/hand_2.png" type="Texture" id=14]
 [ext_resource path="res://kunio/assets/walk/hand_4.png" type="Texture" id=16]
 [ext_resource path="res://kunio/assets/walk/body_4.png" type="Texture" id=17]
+
 
 [sub_resource type="LargeTexture" id=10]
 _data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 2 ), Vector2( 0, 0 ), ExtResource( 4 ), Vector2( 64, 64 ) ]
