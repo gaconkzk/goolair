@@ -10,11 +10,14 @@ position = Vector2( 1, 0 )
 [node name="z-layer" type="YSort" parent="."]
 
 [node name="ppl" parent="z-layer" instance=ExtResource( 1 )]
-position = Vector2( 399.414, 147.515 )
+position = Vector2( 398.914, 148.015 )
+
+[node name="guest" parent="z-layer" instance=ExtResource( 1 )]
+position = Vector2( 507.855, 121.478 )
+is_selected = false
 
 [node name="stadium" parent="z-layer" instance=ExtResource( 2 )]
 position = Vector2( -7, -2 )
 
 [node name="ball" parent="z-layer" instance=ExtResource( 3 )]
 position = Vector2( 424, 149 )
-mode = 2

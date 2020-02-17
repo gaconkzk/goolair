@@ -12,8 +12,7 @@ var is_sticking = false
 # collider to the ball
 
 var moving
-var move_right
-var current_direction
+var current_direction = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
   set_use_custom_integrator(false)
@@ -21,10 +20,13 @@ func _ready():
 #func fly():
 #  apply_impulse(Vector2(), Vector2(100, 0))
 
-func check_moving_and_direction():
+func update_moving_and_direction():
   var dist = position - prev_pos
   moving = dist.x != 0 || dist.y != 0
-  if dist.x > 0:
+  
+  if keeper:
+    current_direction = -1 if keeper.get_node("fanim").flip_h else 1
+  elif dist.x > 0:
     current_direction = 1
   elif dist.x < 0:
     current_direction = -1
@@ -47,5 +49,5 @@ func _process(_delta):
     position = keeper.position + Vector2(offset_x, 1)
 
 func _physics_process(delta):
-  check_moving_and_direction()
+  update_moving_and_direction()
 
