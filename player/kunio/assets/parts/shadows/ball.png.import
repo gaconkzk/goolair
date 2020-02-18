@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/horibata.png-351c3766a25c9c85108ad31678d1ba84.stex"
+path="res://.import/ball.png-e71c7cf6e648c7254b37139e0648a910.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kunio/assets/parts/head_side/horibata.png"
-dest_files=[ "res://.import/horibata.png-351c3766a25c9c85108ad31678d1ba84.stex" ]
+source_file="res://kunio/assets/parts/shadows/ball.png"
+dest_files=[ "res://.import/ball.png-e71c7cf6e648c7254b37139e0648a910.stex" ]
 
 [params]
 

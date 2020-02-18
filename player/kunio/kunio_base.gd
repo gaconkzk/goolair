@@ -84,21 +84,57 @@ func shoot():
       is_selected = false
       nearest_guy.is_selected = true
     
+func jump(delta):
+  var velo = Vector2()
+  var max_height = 20.0
+  var curr_height = original_z - position.y
+  var offset_y = delta * jump_force
+
+  if falling:
+    velo.y += offset_y*0.2
+    print('fall ', curr_height, ', ', offset_y)
+    if curr_height <= 0:
+      velo.y = 0
+      falling = false
+      on_floor = true
+  if jumping:
+    velo.y -= offset_y
+    if max_height <= curr_height:
+      velo.y = max_height
+      jumping = false
+      falling = true
+  
+  if on_floor && Input.is_action_just_pressed('jump'):
+    velo.y -= delta * jump_force
+    jumping = true
+    on_floor = false
+
+  return velo
+  
+var GRAVI = 8.0
+var jump_force = 90.0
+var original_z
+
+var falling = false
+var jumping = false
+var on_floor= true
 
 func move(delta):
   var velocity = Vector2()
   var dist = speed*delta
   if (is_selected):
     if Input.is_action_pressed('right'):
-        velocity.x += dist
+      velocity.x += dist
     if Input.is_action_pressed('left'):
-        velocity.x -= dist
+      velocity.x -= dist
     if Input.is_action_pressed('down'):
-        velocity.y += dist
-        velocity.x = velocity.x * 0.87
+      velocity.y += dist
+      velocity.x = velocity.x * 0.87
     if Input.is_action_pressed('up'):
-        velocity.y -= dist
-        velocity.x = velocity.x * 0.87
+      velocity.y -= dist
+      velocity.x = velocity.x * 0.87
+    if jumping || falling:
+      velocity += jump(delta)
   return velocity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -106,7 +142,11 @@ func _process(delta):
   var action_pressed = is_selected && (Input.is_action_pressed("right") || Input.is_action_pressed("left") || Input.is_action_pressed("down") || Input.is_action_pressed("up"))
   if action_pressed:
     flip()
-    walk()
+    if not (jumping || falling):
+      walk()
+  elif Input.is_action_just_pressed('jump') && on_floor:
+    original_z = position.y
+    jump(delta)
   else:
     stop()
 

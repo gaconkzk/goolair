@@ -1,11 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://kunio/kunio_base.gd" type="Script" id=1]
 [ext_resource path="res://kunio/assets/run/body_1.png" type="Texture" id=2]
-[ext_resource path="res://kunio/assets/parts/head_side/kunio.png" type="Texture" id=3]
+[ext_resource path="res://kunio/assets/parts/head/kunio.png" type="Texture" id=3]
 [ext_resource path="res://kunio/assets/run/hand_1.png" type="Texture" id=4]
 [ext_resource path="res://kunio/assets/run/body_2.png" type="Texture" id=5]
-[ext_resource path="res://kunio/kunio_base_shader.tres" type="Material" id=6]
+[ext_resource path="res://kunio/assets/parts/shadows/player.png" type="Texture" id=6]
 [ext_resource path="res://kunio/assets/run/hand_2.png" type="Texture" id=8]
 [ext_resource path="res://kunio/fanim.gd" type="Script" id=10]
 [ext_resource path="res://kunio/assets/walk/body_1.png" type="Texture" id=11]
@@ -15,38 +15,61 @@
 [ext_resource path="res://kunio/assets/walk/hand_4.png" type="Texture" id=16]
 [ext_resource path="res://kunio/assets/walk/body_4.png" type="Texture" id=17]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+//uniform sampler2D diffuse; // replaces your line 1
+uniform vec4 clothes = vec4(255.0, 253.0, 253.0, 1.0);
+
+const vec4 white = vec4(255.0, 255.0, 255.0, 1.0);
+
+void fragment() {
+  vec4 current_color = texture(TEXTURE,UV); // Get current color of pixel
+  if(current_color.r == 1.0 && current_color.g == 1.0 && current_color.b == 1.0 && current_color.a == 1.0) {
+    if (UV.y >= 0.375) {
+      current_color = clothes; // Change it to clothes color
+    }
+  }
+  
+  COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/clothes = Color( 1, 1, 1, 1 )
 
 [sub_resource type="LargeTexture" id=10]
 _data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 2 ), Vector2( 0, 0 ), ExtResource( 4 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="LargeTexture" id=11]
-_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 11 ), Vector2( 0, 0 ), ExtResource( 12 ), Vector2( 64, 64 ) ]
+_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="LargeTexture" id=12]
-_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 13 ), Vector2( 0, 0 ), ExtResource( 14 ), Vector2( 64, 64 ) ]
+_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 11 ), Vector2( 0, 0 ), ExtResource( 12 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="LargeTexture" id=13]
-_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 17 ), Vector2( 0, 0 ), ExtResource( 16 ), Vector2( 64, 64 ) ]
+_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 13 ), Vector2( 0, 0 ), ExtResource( 14 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="LargeTexture" id=14]
-_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 5 ), Vector2( 0, 0 ), ExtResource( 8 ), Vector2( 64, 64 ) ]
+_data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 17 ), Vector2( 0, 0 ), ExtResource( 16 ), Vector2( 64, 64 ) ]
 
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 10 ) ],
-"loop": false,
-"name": "stand",
-"speed": 0.0
+"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 11 ), SubResource( 13 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 12 ), SubResource( 14 ) ],
 "loop": true,
 "name": "walk",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 14 ) ],
-"loop": true,
-"name": "run",
-"speed": 7.0
+"frames": [ SubResource( 10 ) ],
+"loop": false,
+"name": "stand",
+"speed": 0.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=9]
@@ -55,7 +78,7 @@ radius = 1.0
 height = 152.0
 
 [node name="ppl" type="Area2D"]
-material = ExtResource( 6 )
+material = SubResource( 2 )
 position = Vector2( -63.5, 19 )
 script = ExtResource( 1 )
 
@@ -65,12 +88,31 @@ frames = SubResource( 15 )
 animation = "stand"
 offset = Vector2( 0, -16 )
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
 sprite_metadata = "res://kunio/assets/kunio_data.json"
 default_animation = "run"
 
 [node name="collission" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -0.9, -1 )
 rotation = 1.5708
 scale = Vector2( 1, 0.1 )
 z_as_relative = false
 shape = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="shadow" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.462745, 0.223529, 0.223529, 1 )
+self_modulate = Color( 0.733333, 0.101961, 0.101961, 1 )
+show_behind_parent = true
+position = Vector2( -0.402594, -1.12411 )
+z_as_relative = false
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
