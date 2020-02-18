@@ -86,35 +86,37 @@ func shoot():
     
 func jump(delta):
   var velo = Vector2()
-  var max_height = 20.0
   var curr_height = original_z - position.y
   var offset_y = delta * jump_force
 
   if falling:
-    velo.y += offset_y*0.2
-    print('fall ', curr_height, ', ', offset_y)
+    velo.y += offset_y
     if curr_height <= 0:
-      velo.y = 0
+      velo.y = curr_height
       falling = false
       on_floor = true
   if jumping:
-    velo.y -= offset_y
+    velo.y -= offset_y*1.5
     if max_height <= curr_height:
-      velo.y = max_height
+      delta = -(max_height - curr_height)
+      velo.y = -delta
       jumping = false
       falling = true
   
   if on_floor && Input.is_action_just_pressed('jump'):
-    velo.y -= delta * jump_force
     jumping = true
     on_floor = false
 
   return velo
   
 var GRAVI = 8.0
-var jump_force = 90.0
+var max_height = 25.0
+var jump_force = 50.0
+
 var original_z
 
+var walking = false
+var running = false
 var falling = false
 var jumping = false
 var on_floor= true
@@ -129,12 +131,16 @@ func move(delta):
       velocity.x -= dist
     if Input.is_action_pressed('down'):
       velocity.y += dist
-      velocity.x = velocity.x * 0.87
+#      velocity.x = velocity.x * 0.87
     if Input.is_action_pressed('up'):
       velocity.y -= dist
-      velocity.x = velocity.x * 0.87
+#      velocity.x = velocity.x * 0.87
     if jumping || falling:
-      velocity += jump(delta)
+      if velocity.y != 0:
+        original_z += velocity.y
+      var zj = jump(delta)
+      velocity += zj
+      $shadow.position.y -= zj.y
   return velocity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -143,12 +149,27 @@ func _process(delta):
   if action_pressed:
     flip()
     if not (jumping || falling):
-      walk()
-  elif Input.is_action_just_pressed('jump') && on_floor:
+      walking = true
+  if Input.is_action_just_pressed('jump') && on_floor:
     original_z = position.y
+    $shadow.visible = true
     jump(delta)
+  
+  if !(jumping || falling):
+    $shadow.visible = false
+
+  if walking:
+    $fanim.play("walk")
+  elif running:
+    $fanim.play("run")
+  elif jumping:
+    $fanim.play("jump")
+  elif falling:
+    $fanim.play("fall")
   else:
-    stop()
+    $fanim.play("stand")
+#  else:
+#    stop()
 
 func _physics_process(delta):
   var velo = move(delta)

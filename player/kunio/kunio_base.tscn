@@ -56,6 +56,11 @@ _data = [ Vector2( 0, 0 ), ExtResource( 3 ), Vector2( 0, 0 ), ExtResource( 17 ),
 
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
+"frames": [ SubResource( 10 ) ],
+"loop": false,
+"name": "stand",
+"speed": 0.0
+}, {
 "frames": [ SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "run",
@@ -65,11 +70,6 @@ animations = [ {
 "loop": true,
 "name": "walk",
 "speed": 6.0
-}, {
-"frames": [ SubResource( 10 ) ],
-"loop": false,
-"name": "stand",
-"speed": 0.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=9]
@@ -86,6 +86,7 @@ script = ExtResource( 1 )
 use_parent_material = true
 frames = SubResource( 15 )
 animation = "stand"
+playing = true
 offset = Vector2( 0, -16 )
 script = ExtResource( 10 )
 __meta__ = {
