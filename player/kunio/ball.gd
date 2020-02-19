@@ -45,7 +45,7 @@ func shoot(angle, distant):
   keeper = null
 
   mode = RigidBody2D.MODE_CHARACTER
-  print(rad2deg(angle.angle()))
+#  print(rad2deg(angle.angle()))
   if distant > 200:
     print('height ball')
     var high_angle = _calculate_angle(angle)

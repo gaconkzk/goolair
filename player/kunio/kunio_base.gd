@@ -1,7 +1,7 @@
 tool
 extends Area2D
 
-var speed = 30
+var speed = 20
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,7 +17,19 @@ var kept_ball
 
 export var is_selected = false setget set_selected
 
+func _input(event):
+  if is_selected:
+    if event is InputEventKey:
+      #jump
+      if event.is_action_pressed("jump") \
+        and on_floor and is_selected:
+        original_z = position.y
+        jumping = true
+        on_floor = false
+        $shadow.visible = true
+
 func _ready():
+  set_process_input(true)
   add_to_group("players")
   material = material.duplicate()
   self.connect("body_entered", self, "meet")
@@ -39,13 +51,6 @@ func meet(hit_by):
     kept_ball.keeper = self
     kept_ball.current_direction = 1 if $fanim.flip_h else -1
     kept_ball.set_use_custom_integrator(true)
-
-func flip():
-  if Input.is_action_pressed("left") and not $fanim.flip_h:
-    $fanim.flip_h = true
-    
-  if Input.is_action_pressed("right") and $fanim.flip_h:
-    $fanim.flip_h = false
     
 func walk():
   $fanim.play("walk")
@@ -101,10 +106,6 @@ func jump(delta):
       velo.y = -delta
       jumping = false
       falling = true
-  
-  if on_floor && Input.is_action_just_pressed('jump'):
-    jumping = true
-    on_floor = false
 
   return velo
   
@@ -122,8 +123,8 @@ var on_floor= true
 
 func move(delta):
   var velocity = Vector2()
-  var dist = speed*delta
   if (is_selected):
+    var dist = speed*delta
     if Input.is_action_pressed('right'):
       velocity.x += dist
     if Input.is_action_pressed('left'):
@@ -142,35 +143,39 @@ func move(delta):
       $shadow.position.y -= zj.y
   return velocity
 
-func _process(delta):
-  var action_pressed = is_selected && (Input.is_action_pressed("right") || Input.is_action_pressed("left") || Input.is_action_pressed("down") || Input.is_action_pressed("up"))
-  if action_pressed:
-    flip()
-    if not (jumping || falling):
+func _check_input_state():
+  if is_selected:
+    if Input.is_action_pressed("up") \
+      or Input.is_action_pressed("down") \
+      or Input.is_action_pressed("left") \
+      or Input.is_action_pressed("right"):
       walking = true
-  if Input.is_action_just_pressed('jump') && on_floor:
-    original_z = position.y
-    $shadow.visible = true
-    jump(delta)
-  
-  if !(jumping || falling):
-    $shadow.visible = false
+    else:
+      walking = false
+    
+    #flip
+    if Input.is_action_pressed("left") and not $fanim.flip_h:
+      $fanim.flip_h = true
+    if Input.is_action_pressed("right") and $fanim.flip_h:
+      $fanim.flip_h = false
+
+func _movement_process():
+  _check_input_state()
 
   if walking:
     $fanim.play("walk")
-  elif running:
-    $fanim.play("run")
-  elif jumping:
-    $fanim.play("jump")
-  elif falling:
-    $fanim.play("fall")
-  else:
-    $fanim.play("stand")
-#  else:
-#    stop()
+    return
+
+  $fanim.play("stand")
+func _process(delta):  
+  if !(jumping || falling):
+    $shadow.visible = false
+
+  _movement_process()
 
 func _physics_process(delta):
   var velo = move(delta)
+  
   position += velo
   if kept_ball:
     if Input.is_action_pressed("shot"):
