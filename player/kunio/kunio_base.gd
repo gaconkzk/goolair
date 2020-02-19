@@ -159,7 +159,7 @@ func _check_input_state():
     if Input.is_action_pressed("right") and $fanim.flip_h:
       $fanim.flip_h = false
 
-func _movement_process():
+func _update_animation():
   _check_input_state()
 
   if walking:
@@ -167,11 +167,12 @@ func _movement_process():
     return
 
   $fanim.play("stand")
+
 func _process(delta):  
   if !(jumping || falling):
     $shadow.visible = false
 
-  _movement_process()
+  _update_animation()
 
 func _physics_process(delta):
   var velo = move(delta)
