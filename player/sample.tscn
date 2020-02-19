@@ -61,3 +61,4 @@ position = Vector2( -7, -2 )
 
 [node name="ball" parent="z-layer" instance=ExtResource( 3 )]
 position = Vector2( 424, 149 )
+deceleration = 50.0

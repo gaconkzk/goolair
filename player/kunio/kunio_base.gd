@@ -56,34 +56,33 @@ func run():
 func stop():
   $fanim.stop()
   $fanim.frame = 0
-  
+
+# TODO correct find nearest guy
+func find_guy():
+  var nearest_guy = null
+
+  var guys = get_tree().get_nodes_in_group("players")
+  for guy in guys:
+    if guy.name != name:
+      nearest_guy = guy
+      break
+  return nearest_guy
+
 func shoot():
   if kept_ball:
-    # TODO find nearest guy
-    var guys = get_tree().get_nodes_in_group("players")
-    var nearest_guy
-    for guy in guys:
-      if guy.name != name:
-        nearest_guy = guy
-        break
-#    for guy in guys:
-#      if guy.global_position.distance_to(position.global_position) < nearest_guy.global
-    
+    var nearest_guy = find_guy()
     if nearest_guy:
-#      var vec_angle = (nearest_guy.global_position - global_position).normalized()
-      var angle = position.angle_to_point(nearest_guy.position)
-  #    var angle = deg2rad(45.0)
-      var vec_angle = Vector2(-cos(angle), -sin(angle))
-      kept_ball.reset()
-      kept_ball.apply_central_impulse(vec_angle*100)
-      kept_ball.is_sticking = false
-      kept_ball.keeper = null
-      kept_ball.set_use_custom_integrator(false)
+      var angle = position.direction_to(nearest_guy.position)
+#      var vec_angle = Vector2(-cos(angle), -sin(angle))
+      var dist = position.distance_to(nearest_guy.position)
+      kept_ball.shoot(angle, dist)
       kept_ball = null
       
       is_selected = false
       nearest_guy.is_selected = true
-    
+      walking = false
+      running = false
+
 func jump(delta):
   var velo = Vector2()
   var curr_height = original_z - position.y
@@ -131,10 +130,10 @@ func move(delta):
       velocity.x -= dist
     if Input.is_action_pressed('down'):
       velocity.y += dist
-#      velocity.x = velocity.x * 0.87
+      velocity.x = velocity.x * 0.87
     if Input.is_action_pressed('up'):
       velocity.y -= dist
-#      velocity.x = velocity.x * 0.87
+      velocity.x = velocity.x * 0.87
     if jumping || falling:
       if velocity.y != 0:
         original_z += velocity.y
@@ -143,7 +142,6 @@ func move(delta):
       $shadow.position.y -= zj.y
   return velocity
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   var action_pressed = is_selected && (Input.is_action_pressed("right") || Input.is_action_pressed("left") || Input.is_action_pressed("down") || Input.is_action_pressed("up"))
   if action_pressed:
