@@ -47,8 +47,9 @@ func set_head(value):
   $fanim.head = value
 
 func meet(hit_by):
-  print(name, ', ', hit_by.name)
   if hit_by.name == "ball" && not kept_ball:
+    print(hit_by.get_node("collide").global_position, ', ', $collide.global_position)
+    print(get_overlapping_bodies())
     kept_ball = hit_by
     kept_ball.keeper = self
     kept_ball.current_direction = 1 if $fanim.flip_h else -1

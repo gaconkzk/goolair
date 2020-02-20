@@ -25,7 +25,7 @@ var distant = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  set_use_custom_integrator(false)
+#  set_use_custom_integrator(false)
   shadow.global_position = global_position
 
 func update_moving_and_direction():
@@ -125,7 +125,6 @@ func _integrate_forces(state):
 #  _slow_down(state)
 
   if high_ball:
-    print($collide.position)
     var current_x = position.x - ori_pos.x
     
     # well bouncing Errrrrrrrr

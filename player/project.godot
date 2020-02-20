@@ -24,6 +24,11 @@ config/name="goolair"
 run/main_scene="res://sample.tscn"
 config/icon="res://fly.png"
 
+[debug]
+
+shapes/collision/shape_color=Color( 0, 0.6, 0.701961, 0.780392 )
+shapes/collision/contact_color=Color( 1, 0.2, 0.101961, 0.8 )
+
 [display]
 
 window/size/width=320
@@ -37,6 +42,7 @@ window/stretch/aspect="keep"
 
 view=false
 2d=false
+collision=false
 
 [importer_defaults]
 
