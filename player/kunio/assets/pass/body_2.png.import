@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/horibata_2.png-c7a49f2619fb8208bce67e184036a68a.stex"
+path="res://.import/body_2.png-84fef2d2ab8805588f3515a8953adaf2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kunio/sprites/horibata_2.png"
-dest_files=[ "res://.import/horibata_2.png-c7a49f2619fb8208bce67e184036a68a.stex" ]
+source_file="res://kunio/assets/pass/body_2.png"
+dest_files=[ "res://.import/body_2.png-84fef2d2ab8805588f3515a8953adaf2.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

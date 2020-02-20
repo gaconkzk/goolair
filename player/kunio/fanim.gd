@@ -6,7 +6,7 @@ class_name NekAnimatedSprite
 # String is a path to a directory.
 export(String, FILE) var sprite_metadata setget set_sprite_metadata
 
-export(String, "stand", "run", "walk") var default_animation setget update_default_animation
+export(String, "stand", "run", "walk", "pass") var default_animation setget update_default_animation
 
 var head = "kunio" setget set_head
 
@@ -19,13 +19,16 @@ func update_default_animation(value):
   default_animation = value
   self.animation = default_animation
 
-func create_frames(head, fs):
+func create_frames(h, fs):
   var farr = []
   if fs.size() > 0:
     for f in fs:
       var texture = LargeTexture.new()
       texture.set_size(Vector2(f["size"]["width"], f["size"]["height"]))
-      texture.add_piece(Vector2(), head)
+      if f.has('head_side') and f["head_side"]:
+        texture.add_piece(Vector2(), _create_head_side())
+      else:
+        texture.add_piece(Vector2(), h)
       for pieces in f["pieces"]:
         var prltx = load(pieces)
         texture.add_piece(Vector2(0, 0), prltx)
@@ -44,15 +47,18 @@ func create_animations(farr, animations):
       sf.set_animation_loop(anim["name"], anim["loop"])
   return sf
 
+var head_path
+
+func _create_head_side():
+  var head_texture = load("%s/head_side/%s.png" % [head_path, head])
+  return head_texture
+
 func create_head(dict_head, path):
-  var h
-  if head:
-    h = head
-  else:
-    h = dict_head
+  if not head:
+    head = dict_head
   
-  var p = path if path else "res://kunio/assets/parts"
-  var head_texture = load("%s/head/%s.png" % [p, h])
+  head_path = path if path else "res://kunio/assets/parts"
+  var head_texture = load("%s/head/%s.png" % [head_path, head])
   return head_texture
 
 func set_sprite_metadata(value):

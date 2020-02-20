@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ball.png-0e893d229e23167150cf7aef96668549.s3tc.stex"
-path.etc2="res://.import/ball.png-0e893d229e23167150cf7aef96668549.etc2.stex"
+path.s3tc="res://.import/grass_1.png-243a26d42aea47fc3ff31c31eca930a0.s3tc.stex"
+path.etc2="res://.import/grass_1.png-243a26d42aea47fc3ff31c31eca930a0.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://kunio/assets/parts/ball.png"
-dest_files=[ "res://.import/ball.png-0e893d229e23167150cf7aef96668549.s3tc.stex", "res://.import/ball.png-0e893d229e23167150cf7aef96668549.etc2.stex" ]
+source_file="res://kunio/assets/stadium/grass_1.png"
+dest_files=[ "res://.import/grass_1.png-243a26d42aea47fc3ff31c31eca930a0.s3tc.stex", "res://.import/grass_1.png-243a26d42aea47fc3ff31c31eca930a0.etc2.stex" ]
 
 [params]
 

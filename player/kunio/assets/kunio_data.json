@@ -44,6 +44,14 @@
         "res://kunio/assets/walk/body_4.png",
         "res://kunio/assets/walk/hand_4.png"
       ]
+    },
+    {
+      "size": { "width": 64, "height": 64 },
+      "head_side": true,
+      "pieces": [
+        "res://kunio/assets/pass/body_2.png",
+        "res://kunio/assets/pass/hand_2.png"
+      ]
     }
   ],
   "animations": [
@@ -64,6 +72,12 @@
       "frames": [2, 3, 2, 5],
       "speed": 6,
       "loop": true
+    },
+    {
+      "name": "pass",
+      "frames": [6, 2],
+      "speed": 5,
+      "loop": false
     }
   ]
 }

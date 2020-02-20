@@ -25,12 +25,12 @@ void fragment() {
   COLOR = current_color;
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/clothes = Color( 0.0823529, 0.329412, 0.756863, 1 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/clothes = Color( 0.0784314, 0.52549, 0.67451, 1 )
@@ -44,7 +44,7 @@ script = ExtResource( 4 )
 [node name="ppl_1" parent="z-layer" groups=[
 "players",
 ] instance=ExtResource( 1 )]
-material = SubResource( 5 )
+material = SubResource( 2 )
 position = Vector2( 398.914, 148.015 )
 z_index = 2
 clothes_color = Color( 0.0823529, 0.329412, 0.756863, 1 )
@@ -53,7 +53,7 @@ is_selected = true
 [node name="ppl_2" parent="z-layer" groups=[
 "players",
 ] instance=ExtResource( 1 )]
-material = SubResource( 6 )
+material = SubResource( 3 )
 position = Vector2( 523.738, 116.134 )
 z_index = 2
 head = "horibata"

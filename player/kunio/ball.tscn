@@ -9,18 +9,22 @@ radius = 1.0
 height = 12.0
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 19
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 19
 atlas = ExtResource( 1 )
 region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 19
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 19
 atlas = ExtResource( 1 )
 region = Rect2( 32, 64, 32, 32 )
 

@@ -64,7 +64,7 @@ func _calculate_height(x, distant, angle):
 
 var spd = 70
 
-func shoot(angle, d):
+func pass_ball(angle, d):
   angular_velocity = 0.0
   is_sticking = false
   keeper = null
@@ -125,6 +125,7 @@ func _integrate_forces(state):
 #  _slow_down(state)
 
   if high_ball:
+    print($collide.position)
     var current_x = position.x - ori_pos.x
     
     # well bouncing Errrrrrrrr

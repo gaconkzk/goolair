@@ -33,6 +33,7 @@ func _ready():
   add_to_group("players")
   material = material.duplicate()
   self.connect("body_entered", self, "meet")
+  $fanim.connect("animation_finished", self, "passed" )
 
 func set_selected(value):
   is_selected = value
@@ -46,12 +47,13 @@ func set_head(value):
   $fanim.head = value
 
 func meet(hit_by):
+  print(name, ', ', hit_by.name)
   if hit_by.name == "ball" && not kept_ball:
     kept_ball = hit_by
     kept_ball.keeper = self
     kept_ball.current_direction = 1 if $fanim.flip_h else -1
 #    kept_ball.set_use_custom_integrator(true)
-    
+
 func walk():
   $fanim.play("walk")
 
@@ -73,13 +75,14 @@ func find_guy():
       break
   return nearest_guy
 
-func shoot():
+func pass_ball():
   if kept_ball:
     var nearest_guy = find_guy()
     if nearest_guy:
+      passing = true
       var angle = position.direction_to(nearest_guy.position)
       var dist = position.distance_to(nearest_guy.position)
-      kept_ball.shoot(angle, dist)
+      kept_ball.pass_ball(angle, dist)
       kept_ball = null
       
       is_selected = false
@@ -118,6 +121,7 @@ var walking = false
 var running = false
 var falling = false
 var jumping = false
+var passing = false
 var on_floor= true
 
 func move(delta):
@@ -164,8 +168,16 @@ func _update_animation():
   if walking:
     $fanim.play("walk")
     return
-
+  
+  if passing:
+    $fanim.play("pass")
+    return
+  
   $fanim.play("stand")
+
+func passed():
+  if $fanim.animation == "pass":
+    passing = false
 
 func _process(delta):  
   if !(jumping || falling):
@@ -179,4 +191,5 @@ func _physics_process(delta):
   position += velo
   if kept_ball:
     if Input.is_action_pressed("shot"):
-      shoot()
+      pass_ball()
+
