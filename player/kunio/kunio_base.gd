@@ -78,7 +78,6 @@ func shoot():
     var nearest_guy = find_guy()
     if nearest_guy:
       var angle = position.direction_to(nearest_guy.position)
-#      var vec_angle = Vector2(-cos(angle), -sin(angle))
       var dist = position.distance_to(nearest_guy.position)
       kept_ball.shoot(angle, dist)
       kept_ball = null
@@ -123,7 +122,7 @@ var on_floor= true
 
 func move(delta):
   var velocity = Vector2()
-  if (is_selected):
+  if (is_selected || jumping || falling):
     var dist = speed*delta
     if Input.is_action_pressed('right'):
       velocity.x += dist
