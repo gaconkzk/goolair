@@ -10,6 +10,8 @@ var is_sticking = false
 
 onready var shadow = get_node("../ball_shadow")
 
+onready var viewport = get_viewport()
+
 # (used when sticked) transform (tr) at the collistion instant (ci) from the
 # collider to the ball
 
@@ -25,9 +27,6 @@ var distant = 0
 func _ready():
   set_use_custom_integrator(false)
   shadow.global_position = global_position
-
-#func fly():
-#  apply_impulse(Vector2(), Vector2(100, 0))
 
 func update_moving_and_direction():
   var dist = position - prev_pos
@@ -59,11 +58,11 @@ func _calculate_height(x, distant, angle):
   var tg = tan(deg2rad(angle))
   var max_height = (tg * distant) / 2
   
-  var height = x * ((-tg * x / 2) + (tg * distant / 2)) / 20
+  var height = x * ((-tg * x / 2) + max_height) / 10
   
   return height
 
-var spd = 60
+var spd = 70
 
 func shoot(angle, d):
   angular_velocity = 0.0
@@ -110,31 +109,20 @@ func _process(_delta):
 #  else:
 #    shadow.position.y = pos
 
-var cele = 0
-func _slow_down(state):
-  var force = state.linear_velocity.length()
-#  var xforce = spd/3
-#
-#  cele += xforce
-#  if cele > xforce:
-#    cele = xforce
-#
-#  force -= cele * state.step
-#  if force < 0:
-#    cele = 0
-#    force = 0
-  
-  state.linear_velocity = state.linear_velocity.normalized() * force
-  if state.linear_velocity.x < 1 and state.linear_velocity.x > -1:
-    state.linear_velocity.x = 0
-  if state.linear_velocity.y < 1 and state.linear_velocity.y > -1:
-    state.linear_velocity.y = 0
+#var cele = 0
+#func _slow_down(state):
+#  var force = state.linear_velocity.length()
+#  state.linear_velocity = state.linear_velocity.normalized() * force
+#  if state.linear_velocity.x < 1 and state.linear_velocity.x > -1:
+#    state.linear_velocity.x = 0
+#  if state.linear_velocity.y < 1 and state.linear_velocity.y > -1:
+#    state.linear_velocity.y = 0
 
 func _physics_process(delta):
   update_moving_and_direction()
 
 func _integrate_forces(state):
-  _slow_down(state)
+#  _slow_down(state)
 
   if high_ball:
     var current_x = position.x - ori_pos.x
@@ -146,7 +134,7 @@ func _integrate_forces(state):
       shadow.visible = false
     else:
       var si = sign(current_x)
-      var angle = 25 if si > 0 else 155
+      var angle = 15 if si > 0 else 165
       
       height = _calculate_height(current_x, si * distant, angle)
       position.y += -height*si

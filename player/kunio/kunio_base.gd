@@ -50,7 +50,7 @@ func meet(hit_by):
     kept_ball = hit_by
     kept_ball.keeper = self
     kept_ball.current_direction = 1 if $fanim.flip_h else -1
-    kept_ball.set_use_custom_integrator(true)
+#    kept_ball.set_use_custom_integrator(true)
     
 func walk():
   $fanim.play("walk")
@@ -83,7 +83,7 @@ func shoot():
       kept_ball = null
       
       is_selected = false
-      nearest_guy.is_selected = true
+      nearest_guy.is_selected = true # simple active the other guy
       walking = false
       running = false
 
