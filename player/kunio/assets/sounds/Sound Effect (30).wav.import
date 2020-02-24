@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Sound Effect (30).wav-e81d12622f82fa79d5ecd12a0f388bea.sample"
+
+[deps]
+
+source_file="res://kunio/assets/sounds/Sound Effect (30).wav"
+dest_files=[ "res://.import/Sound Effect (30).wav-e81d12622f82fa79d5ecd12a0f388bea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

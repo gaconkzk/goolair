@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fast_dribble.wav-49c871ec6b08a6a7a778a516bdeb1d74.sample"
+
+[deps]
+
+source_file="res://kunio/assets/sounds/fast_dribble.wav"
+dest_files=[ "res://.import/fast_dribble.wav-49c871ec6b08a6a7a778a516bdeb1d74.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

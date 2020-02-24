@@ -110,9 +110,10 @@ func _integrate_forces(state):
     
     # well bouncing Errrrrrrrr
     if abs(current_x) >= distant:
+      $hit_ground.play()
       high_ball = false
       height = 0
-      shadow.visible = false
+      shadow.show = false
     else:
       var si = sign(current_x)
       var angle = 35 if si > 0 else -135

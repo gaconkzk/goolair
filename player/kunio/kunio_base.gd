@@ -36,6 +36,7 @@ func _input(event):
         jumping = true
         on_floor = false
         $shadow.visible = true
+        $jump.play()
 
 func _ready():
   set_process_input(true)
@@ -73,10 +74,10 @@ func meet(hit_by):
 
       if ball.high_ball && abs(ball.height) >= 8:
         ball.linear_velocity.x = 0
-        ball.moving = false
         stopping = true
       else:
         _get_ball()
+      $stop.play()
 
 func walk():
   $fanim.play("walk")
@@ -114,6 +115,8 @@ func pass_ball():
       nearest_guy.is_selected = true # simple active the other guy
       walking = false
       running = false
+      
+      $pass.play()
 
 func jump(delta):
   var velo = Vector2()
@@ -151,7 +154,7 @@ var on_floor= true
 
 func move(delta):
   var velocity = Vector2()
-  if (is_selected || jumping || falling):
+  if is_selected || jumping || falling:
     var dist = speed*delta
     if Input.is_action_pressed('right'):
       velocity.x += dist
@@ -189,17 +192,17 @@ func _check_input_state():
 
 func _update_animation():
   _check_input_state()
-
-  if walking:
-    $fanim.play("walk")
+  
+  if stopping:
+    $fanim.play("stop")
     return
   
   if passing:
     $fanim.play("pass")
     return
-  
-  if stopping:
-    $fanim.play("stop")
+
+  if walking:
+    $fanim.play("walk")
     return
 
   $fanim.play("stand")
@@ -211,7 +214,6 @@ func passed():
 func _process(delta):  
   if stopping:
     timer += delta
-    print(timer, stop_time)
     if timer > stop_time:
       stopping = false
       timer = 0
