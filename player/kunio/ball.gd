@@ -25,7 +25,9 @@ var distant = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#  set_use_custom_integrator(false)
+  gravity_scale = 0
+  z_as_relative = true
+  z_index = 2
   shadow.global_position = global_position
 
 func update_moving_and_direction():
@@ -53,7 +55,7 @@ func _calculate_height(x, distant, angle):
 var spd = 70
 
 func pass_ball(angle, d):
-  angular_velocity = 0.0
+  linear_velocity = Vector2()
   is_sticking = false
   keeper = null
 
@@ -62,8 +64,7 @@ func pass_ball(angle, d):
   distant = d
   ori_pos = position
   high_ball = true
-  shadow.visible = true
-
+  shadow.show = true
   var impulse = angle * spd
   apply_central_impulse(impulse)
   
@@ -79,7 +80,7 @@ func _process(_delta):
     is_sticking = true
     
     # reset positions
-    shadow.visible = false
+    shadow.show = false
     height = 0
     
     mode = RigidBody2D.MODE_STATIC

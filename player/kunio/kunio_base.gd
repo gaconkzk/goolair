@@ -17,6 +17,8 @@ var kept_ball
 
 export var is_selected = false setget set_selected
 
+onready var ball = get_node("../ball")
+
 func _input(event):
   if is_selected:
     if event is InputEventKey:
@@ -32,7 +34,7 @@ func _ready():
   set_process_input(true)
   add_to_group("players")
   material = material.duplicate()
-  self.connect("body_entered", self, "meet")
+  self.connect("area_entered", self, "meet")
   $fanim.connect("animation_finished", self, "passed" )
 
 func set_selected(value):
@@ -47,10 +49,22 @@ func set_head(value):
   $fanim.head = value
 
 func meet(hit_by):
-  if hit_by.name == "ball" && not kept_ball:
-    kept_ball = hit_by
-    kept_ball.keeper = self
-    kept_ball.current_direction = 1 if $fanim.flip_h else -1
+  if hit_by.name == "ball_shadow" && not kept_ball:
+    var zhi = abs(ball.global_position.y - global_position.y)
+    print(zhi)
+    if zhi <= 25:
+      # start getting ball
+      print('ball height: ', ball.height)
+      if ball.high_ball && abs(ball.height) >= 8:
+        print('heeey stop the ball')
+      kept_ball = ball
+      kept_ball.keeper = self
+
+      if position.x > kept_ball.position.x:
+        $fanim.flip_h = true
+      elif position.x < kept_ball.position.x:
+        $fanim.flip_h = false
+      kept_ball.current_direction = 1 if $fanim.flip_h else -1
 
 func walk():
   $fanim.play("walk")
@@ -80,6 +94,7 @@ func pass_ball():
       passing = true
       var angle = position.direction_to(nearest_guy.position)
       var dist = position.distance_to(nearest_guy.position)
+      dist -= 15 # center not good
       kept_ball.pass_ball(angle, dist)
       kept_ball = null
       
