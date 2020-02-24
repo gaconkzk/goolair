@@ -56,11 +56,16 @@ func _calculate_height(x, distant, angle):
   # h = -Dx(x/d + 1) = -d*tg(angle)*x* 2(x/d + 1) = x * (-tg(angle) * x / 2  + tg(angle) * d / 2)
   # 45o (tg(angle) = 1): x * (-x/2 + d/2)
   var tg = tan(deg2rad(angle))
-  var max_height = (tg * distant) / 2
+  var b = 2* tg
+  var a = - 2 * tg / distant
   
-  var height = x * ((-tg * x / 2) + max_height) / 10
+  var h = x * (a * x + b)
   
-  return height
+#  var max_height = (tg * distant) / 2
+#
+#  var height = x * ((-tg * x / 2) + max_height) / 10
+  
+  return h
 
 var spd = 70
 
@@ -128,13 +133,13 @@ func _integrate_forces(state):
     var current_x = position.x - ori_pos.x
     
     # well bouncing Errrrrrrrr
-    if abs(current_x) >= distant+20:
+    if abs(current_x) >= distant:
       high_ball = false
       height = 0
       shadow.visible = false
     else:
       var si = sign(current_x)
-      var angle = 15 if si > 0 else 165
+      var angle = 35 if si > 0 else -135
       
       height = _calculate_height(current_x, si * distant, angle)
       position.y += -height*si
