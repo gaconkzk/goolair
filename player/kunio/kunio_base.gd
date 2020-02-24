@@ -156,22 +156,23 @@ func move(delta):
   var velocity = Vector2()
   if is_selected || jumping || falling:
     var dist = speed*delta
-    if Input.is_action_pressed('right'):
-      velocity.x += dist
-    if Input.is_action_pressed('left'):
-      velocity.x -= dist
-    if Input.is_action_pressed('down'):
-      velocity.y += dist
-      velocity.x = velocity.x * 0.87
-    if Input.is_action_pressed('up'):
-      velocity.y -= dist
-      velocity.x = velocity.x * 0.87
-    if jumping || falling:
-      if velocity.y != 0:
-        original_z += velocity.y
-      var zj = jump(delta)
-      velocity += zj
-      $shadow.position.y -= zj.y
+    if not stopping:
+      if Input.is_action_pressed('right'):
+        velocity.x += dist
+      if Input.is_action_pressed('left'):
+        velocity.x -= dist
+      if Input.is_action_pressed('down'):
+        velocity.y += dist
+        velocity.x = velocity.x * 0.87
+      if Input.is_action_pressed('up'):
+        velocity.y -= dist
+        velocity.x = velocity.x * 0.87
+      if jumping || falling:
+        if velocity.y != 0:
+          original_z += velocity.y
+        var zj = jump(delta)
+        velocity += zj
+        $shadow.position.y -= zj.y
   return velocity
 
 func _check_input_state():

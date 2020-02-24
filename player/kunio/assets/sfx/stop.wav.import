@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stop.wav-1014b0a651300d1a5eda335278afecde.sample"
+
+[deps]
+
+source_file="res://kunio/assets/sfx/stop.wav"
+dest_files=[ "res://.import/stop.wav-1014b0a651300d1a5eda335278afecde.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

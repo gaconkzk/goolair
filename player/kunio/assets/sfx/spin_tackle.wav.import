@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spin_tackle.wav-0dbf1768e7b2ed626f338e570c689853.sample"
+
+[deps]
+
+source_file="res://kunio/assets/sfx/spin_tackle.wav"
+dest_files=[ "res://.import/spin_tackle.wav-0dbf1768e7b2ed626f338e570c689853.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

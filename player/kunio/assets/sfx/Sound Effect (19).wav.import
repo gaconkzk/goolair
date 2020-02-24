@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Sound Effect (19).wav-7d2ecee7d3f8a2b486b83b096a8dcfc4.sample"
+
+[deps]
+
+source_file="res://kunio/assets/sfx/Sound Effect (19).wav"
+dest_files=[ "res://.import/Sound Effect (19).wav-7d2ecee7d3f8a2b486b83b096a8dcfc4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -19,10 +19,10 @@
 [ext_resource path="res://kunio/assets/walk/body_4.png" type="Texture" id=17]
 [ext_resource path="res://kunio/assets/stop/body_2.png" type="Texture" id=18]
 [ext_resource path="res://kunio/assets/stop/hand_2.png" type="Texture" id=19]
-[ext_resource path="res://kunio/assets/sounds/stop.wav" type="AudioStream" id=20]
-[ext_resource path="res://kunio/assets/sounds/pass.wav" type="AudioStream" id=21]
-[ext_resource path="res://kunio/assets/sounds/jump.wav" type="AudioStream" id=22]
-[ext_resource path="res://kunio/assets/sounds/fast_dribble.wav" type="AudioStream" id=23]
+[ext_resource path="res://kunio/assets/sfx/stop.wav" type="AudioStream" id=20]
+[ext_resource path="res://kunio/assets/sfx/pass.wav" type="AudioStream" id=21]
+[ext_resource path="res://kunio/assets/sfx/jump.wav" type="AudioStream" id=22]
+[ext_resource path="res://kunio/assets/sfx/fast_dribble.wav" type="AudioStream" id=23]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

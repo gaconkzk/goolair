@@ -40,13 +40,18 @@ position = Vector2( 1, 0 )
 script = ExtResource( 4 )
 
 [node name="z-layer" type="YSort" parent="."]
+sort_enabled = false
+
+[node name="stadium" parent="z-layer" instance=ExtResource( 2 )]
+position = Vector2( -7, -2 )
 
 [node name="ppl_1" parent="z-layer" groups=[
 "players",
 ] instance=ExtResource( 1 )]
 material = SubResource( 2 )
-position = Vector2( 398.914, 148.015 )
-z_index = 2
+position = Vector2( 664.981, 147.317 )
+z_index = 147
+z_as_relative = false
 clothes_color = Color( 0.0823529, 0.329412, 0.756863, 1 )
 is_selected = true
 
@@ -54,18 +59,28 @@ is_selected = true
 "players",
 ] instance=ExtResource( 1 )]
 material = SubResource( 3 )
-position = Vector2( 511.133, 145.325 )
-z_index = 2
+position = Vector2( 756.25, 145.325 )
+z_index = 145
+z_as_relative = false
 head = "horibata"
 clothes_color = Color( 0.0784314, 0.52549, 0.67451, 1 )
 
 [node name="ball" parent="z-layer" instance=ExtResource( 3 )]
-position = Vector2( 423.926, 147.943 )
+position = Vector2( 700.468, 146.546 )
 z_index = 2
 z_as_relative = false
 
 [node name="ball_shadow" parent="z-layer" instance=ExtResource( 5 )]
 z_index = 1
 
-[node name="stadium" parent="z-layer" instance=ExtResource( 2 )]
-position = Vector2( -7, -2 )
+[node name="control" type="CanvasLayer" parent="."]
+
+[node name="button" type="Button" parent="control"]
+margin_left = 12.5701
+margin_top = 11.1734
+margin_right = 24.5701
+margin_bottom = 31.1734
+text = "reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
