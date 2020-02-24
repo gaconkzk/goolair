@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://kunio/kunio_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kunio/stadium.tscn" type="PackedScene" id=2]
 [ext_resource path="res://kunio/ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://match.gd" type="Script" id=4]
 [ext_resource path="res://ball_shadow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://kunio/ball.gd" type="Script" id=6]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -59,9 +60,11 @@ z_index = 2
 head = "horibata"
 clothes_color = Color( 0.0784314, 0.52549, 0.67451, 1 )
 
-[node name="ball" parent="z-layer" instance=ExtResource( 3 )]
+[node name="ball" type="RigidBody2D" parent="z-layer" instance=ExtResource( 3 )]
 position = Vector2( 424, 149 )
 z_index = 2
+gravity_scale = 0.0
+script = ExtResource( 6 )
 
 [node name="ball_shadow" parent="z-layer" instance=ExtResource( 5 )]
 z_index = 1

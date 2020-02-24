@@ -42,28 +42,11 @@ func update_moving_and_direction():
   prev_pos = position
 
 func _calculate_height(x, distant, angle):
-  # math hahahaha
-  # ===================
-  # distant = d
-  # x = 0, h = 0   - 1
-  # x = d, h = 0   - 2
-  # x = d/2, h = tg(angle) * d/2 = D // max_height
-  # h = x(ax + b)
-  # 0 = ax + b = ad +b
-  # D = ad/2 + b = ad + 2b
-  # => b = D
-  # a = -D/d
-  # h = -Dx(x/d + 1) = -d*tg(angle)*x* 2(x/d + 1) = x * (-tg(angle) * x / 2  + tg(angle) * d / 2)
-  # 45o (tg(angle) = 1): x * (-x/2 + d/2)
   var tg = tan(deg2rad(angle))
   var b = 2* tg
   var a = - 2 * tg / distant
   
   var h = x * (a * x + b)
-  
-#  var max_height = (tg * distant) / 2
-#
-#  var height = x * ((-tg * x / 2) + max_height) / 10
   
   return h
 
@@ -111,17 +94,6 @@ func _process(_delta):
     shadow.position.y += height
   elif height < 0:
     shadow.position.y -= height
-#  else:
-#    shadow.position.y = pos
-
-#var cele = 0
-#func _slow_down(state):
-#  var force = state.linear_velocity.length()
-#  state.linear_velocity = state.linear_velocity.normalized() * force
-#  if state.linear_velocity.x < 1 and state.linear_velocity.x > -1:
-#    state.linear_velocity.x = 0
-#  if state.linear_velocity.y < 1 and state.linear_velocity.y > -1:
-#    state.linear_velocity.y = 0
 
 func _physics_process(delta):
   update_moving_and_direction()
