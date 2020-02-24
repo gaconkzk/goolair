@@ -52,6 +52,14 @@
         "res://kunio/assets/pass/body_2.png",
         "res://kunio/assets/pass/hand_2.png"
       ]
+    },
+    {
+      "size": { "width": 64, "height": 64 },
+      "head_side": true,
+      "pieces": [
+        "res://kunio/assets/stop/body_2.png",
+        "res://kunio/assets/stop/hand_2.png"
+      ]
     }
   ],
   "animations": [
@@ -76,6 +84,12 @@
     {
       "name": "pass",
       "frames": [6, 2],
+      "speed": 5,
+      "loop": false
+    },
+    {
+      "name": "stop",
+      "frames": [7, 2],
       "speed": 5,
       "loop": false
     }

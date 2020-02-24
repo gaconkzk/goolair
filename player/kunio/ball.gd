@@ -84,10 +84,6 @@ func _process(_delta):
     height = 0
     
     mode = RigidBody2D.MODE_STATIC
-
-  if is_sticking && keeper:
-    var offset_x = current_direction*10
-    position = keeper.position + Vector2(offset_x, 1)
 #
   var pos = global_position
   shadow.global_position = pos
@@ -95,9 +91,16 @@ func _process(_delta):
     shadow.position.y += height
   elif height < 0:
     shadow.position.y -= height
+  
+  if height != 0:
+    z_index = 800
 
 func _physics_process(delta):
   update_moving_and_direction()
+  
+  if is_sticking && keeper:
+    var offset_x = current_direction*10
+    position = keeper.position + Vector2(offset_x, 1)
 
 func _integrate_forces(state):
 #  _slow_down(state)

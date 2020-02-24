@@ -1,6 +1,13 @@
 tool
 extends Area2D
 
+signal stopped
+
+var timer = 0
+var stop_time = 0.3
+var stopping = false
+
+
 var speed = 20
 # Declare member variables here. Examples:
 # var a = 2
@@ -34,7 +41,8 @@ func _ready():
   set_process_input(true)
   add_to_group("players")
   material = material.duplicate()
-  self.connect("area_entered", self, "meet")
+  connect("area_entered", self, "meet")
+  connect("stopped", self, "_get_ball")
   $fanim.connect("animation_finished", self, "passed" )
 
 func set_selected(value):
@@ -48,23 +56,27 @@ func set_head(value):
   head = value
   $fanim.head = value
 
+func _get_ball():
+  kept_ball = ball
+  kept_ball.keeper = self
+  kept_ball.current_direction = 1 if $fanim.flip_h else -1
+
 func meet(hit_by):
   if hit_by.name == "ball_shadow" && not kept_ball:
     var zhi = abs(ball.global_position.y - global_position.y)
-    print(zhi)
     if zhi <= 25:
       # start getting ball
-      print('ball height: ', ball.height)
-      if ball.high_ball && abs(ball.height) >= 8:
-        print('heeey stop the ball')
-      kept_ball = ball
-      kept_ball.keeper = self
-
-      if position.x > kept_ball.position.x:
+      if position.x > ball.position.x:
         $fanim.flip_h = true
-      elif position.x < kept_ball.position.x:
+      elif position.x < ball.position.x:
         $fanim.flip_h = false
-      kept_ball.current_direction = 1 if $fanim.flip_h else -1
+
+      if ball.high_ball && abs(ball.height) >= 8:
+        ball.linear_velocity.x = 0
+        ball.moving = false
+        stopping = true
+      else:
+        _get_ball()
 
 func walk():
   $fanim.play("walk")
@@ -186,6 +198,10 @@ func _update_animation():
     $fanim.play("pass")
     return
   
+  if stopping:
+    $fanim.play("stop")
+    return
+
   $fanim.play("stand")
 
 func passed():
@@ -193,6 +209,14 @@ func passed():
     passing = false
 
 func _process(delta):  
+  if stopping:
+    timer += delta
+    print(timer, stop_time)
+    if timer > stop_time:
+      stopping = false
+      timer = 0
+      emit_signal("stopped")
+
   if !(jumping || falling):
     $shadow.visible = false
 
