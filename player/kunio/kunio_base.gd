@@ -118,21 +118,24 @@ func pass_ball():
       
       $pass.play()
 
+var height = 0
+
 func jump(delta):
   var velo = Vector2()
-  var curr_height = original_z - position.y
+  height = original_z - position.y
   var offset_y = delta * jump_force
 
   if falling:
     velo.y += offset_y
-    if curr_height <= 0:
-      velo.y = curr_height
+    if height <= 0:
+      height = 0
+      velo.y = height
       falling = false
       on_floor = true
-  if jumping:
+  elif jumping:
     velo.y -= offset_y*1.5
-    if max_height <= curr_height:
-      delta = -(max_height - curr_height)
+    if max_height <= height:
+      delta = -(max_height - height)
       velo.y = -delta
       jumping = false
       falling = true
