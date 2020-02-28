@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "KinematicBody25D",
+"language": "GDScript",
+"path": "res://25D/KinematicBody25D.gd"
+}, {
 "base": "AnimatedSprite",
 "class": "NekAnimatedSprite",
 "language": "GDScript",
 "path": "res://kunio/fanim.gd"
+}, {
+"base": "Node2D",
+"class": "Node25D",
+"language": "GDScript",
+"path": "res://25D/Node25D.gd"
 } ]
 _global_script_class_icons={
-"NekAnimatedSprite": ""
+"KinematicBody25D": "",
+"NekAnimatedSprite": "",
+"Node25D": "res://addons/node25d/icons/node25d_icon.png"
 }
 
 [application]
