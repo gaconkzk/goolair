@@ -4,6 +4,8 @@ tool
 extends Node2D
 class_name Node25D, "res://addons/node25d/icons/node25d_icon.png"
 
+var Base25D = preload("res://25D/Basis25D.gd")
+
 # SCALE is the number of 2D units in one 3D unit. Ideally, but not necessarily, an integer.
 const SCALE = 32
 
@@ -17,6 +19,8 @@ export(Vector3) onready var spatial_position setget set_spatial_position, get_sp
 var _basisX: Vector2
 var _basisY: Vector2
 var _basisZ: Vector2
+
+var _basis = Base25D.new()
 
 # Cache the spatial stuff for internal use.
 var _spatial_position: Vector3
