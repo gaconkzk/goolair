@@ -16,9 +16,9 @@ export(Vector3) onready var spatial_position setget set_spatial_position, get_sp
 # There is a broken implementation in a hidden folder.
 # https://github.com/godotengine/godot/issues/21461
 # https://github.com/godotengine/godot-proposals/issues/279
-var _basisX: Vector2
-var _basisY: Vector2
-var _basisZ: Vector2
+#var _basisX: Vector2
+#var _basisY: Vector2
+#var _basisZ: Vector2
 
 var _basis = Base25D.new()
 
@@ -36,9 +36,9 @@ func _process(_delta):
 # Call this method in _Ready, or before you run Node25DProcess.
 func Node25D_ready():
   _spatial_node = get_child(0) if get_child_count() > 0 else null
-  _basisX = SCALE * Vector2(1, 0)
-  _basisY = SCALE * Vector2(0, -0.70710678118)
-  _basisZ = SCALE * Vector2(0, 0.70710678118)
+#  _basisX = SCALE * Vector2(1, 0)
+#  _basisY = SCALE * Vector2(0, -0.70710678118)
+#  _basisZ = SCALE * Vector2(0, 0.70710678118)
   # Changing the values here will change the default for all Node25D instances.
 
 
@@ -49,15 +49,20 @@ func Node25D_process():
     return
   _spatial_position = _spatial_node.translation
   
-  var flat_pos = _spatial_position.x * _basisX
-  flat_pos += _spatial_position.y * _basisY
-  flat_pos += _spatial_position.z * _basisZ
+  var flat_pos = _spatial_position.x * _basis.x
+  flat_pos += _spatial_position.y * _basis.y
+  flat_pos += _spatial_position.z * _basis.z
+#
+#  var flat_pos = _spatial_position.x * _basisX
+#  flat_pos += _spatial_position.y * _basisY
+#  flat_pos += _spatial_position.z * _basisZ
   
   global_position = flat_pos
 
 
 func get_basis():
-  return [_basisX, _basisY, _basisZ]
+#  return [_basisX, _basisY, _basisZ]
+  return [_basis.x, _basis.y, _basis.z]
 
 
 func get_spatial_position():
@@ -81,31 +86,33 @@ func set_spatial_position(value):
 # Change the basis based on the view_mode_index argument.
 # This can be changed or removed in actual games where you only need one view mode.
 func set_view_mode(view_mode_index):
-  match view_mode_index:
-    0: # 45 Degrees
-      _basisX = SCALE * Vector2(1, 0)
-      _basisY = SCALE * Vector2(0, -0.70710678118)
-      _basisZ = SCALE * Vector2(0, 0.70710678118)
-    1: # Isometric
-      _basisX = SCALE * Vector2(0.86602540378, 0.5)
-      _basisY = SCALE * Vector2(0, -1)
-      _basisZ = SCALE * Vector2(-0.86602540378, 0.5)
-    2: # Top Down
-      _basisX = SCALE * Vector2(1, 0)
-      _basisY = SCALE * Vector2(0, 0)
-      _basisZ = SCALE * Vector2(0, 1)
-    3: # Front Side
-      _basisX = SCALE * Vector2(1, 0)
-      _basisY = SCALE * Vector2(0, -1)
-      _basisZ = SCALE * Vector2(0, 0)
-    4: # Oblique Y
-      _basisX = SCALE * Vector2(1, 0)
-      _basisY = SCALE * Vector2(-1, -1)
-      _basisZ = SCALE * Vector2(0, 1)
-    5: # Oblique Z
-      _basisX = SCALE * Vector2(1, 0)
-      _basisY = SCALE * Vector2(0, -1)
-      _basisZ = SCALE * Vector2(-1, 1)
+  _basis.perspective(view_mode_index)
+#  match view_mode_index:
+#    0: # 45 Degrees
+#      _basisX = SCALE * Vector2(1, 0)
+#      _basisY = SCALE * Vector2(0, -0.70710678118)
+#      _basisZ = SCALE * Vector2(0, 0.70710678118)
+#      _basis.perspective = 
+#    1: # Isometric
+#      _basisX = SCALE * Vector2(0.86602540378, 0.5)
+#      _basisY = SCALE * Vector2(0, -1)
+#      _basisZ = SCALE * Vector2(-0.86602540378, 0.5)
+#    2: # Top Down
+#      _basisX = SCALE * Vector2(1, 0)
+#      _basisY = SCALE * Vector2(0, 0)
+#      _basisZ = SCALE * Vector2(0, 1)
+#    3: # Front Side
+#      _basisX = SCALE * Vector2(1, 0)
+#      _basisY = SCALE * Vector2(0, -1)
+#      _basisZ = SCALE * Vector2(0, 0)
+#    4: # Oblique Y
+#      _basisX = SCALE * Vector2(1, 0)
+#      _basisY = SCALE * Vector2(-1, -1)
+#      _basisZ = SCALE * Vector2(0, 1)
+#    5: # Oblique Z
+#      _basisX = SCALE * Vector2(1, 0)
+#      _basisY = SCALE * Vector2(0, -1)
+#      _basisZ = SCALE * Vector2(-1, 1)
 
 
 # Check if anyone presses the view mode buttons and change the basis accordingly.

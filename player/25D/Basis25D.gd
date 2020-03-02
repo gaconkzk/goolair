@@ -9,18 +9,18 @@
 # Remember that Godot's 2D mode has the Y axis pointing DOWN on the screen.
 class_name Base25D
 
-enum PERSPECTIVE { top_down, front_side, isometric, oblique_y, oblique_z }
+enum PERSPECTIVE { top_down, front_side, forty_five, isometric, oblique_y, oblique_z }
 
-var perspective = PERSPECTIVE.front_side setget set_perspective
+var perspective = PERSPECTIVE.forty_five setget set_perspective
+
+var SCALE = 32
 
 var x: Vector2 = Vector2()
 var y: Vector2 = Vector2()
 var z: Vector2 = Vector2()
 
 func _init():
-  x = Vector2()
-  y = Vector2()
-  z = Vector2()
+  set_perspective(perspective)
 
 func set_perspective(value):
   perspective = value
@@ -29,6 +29,8 @@ func set_perspective(value):
       top_down()
     PERSPECTIVE.front_side:
       front_side()
+    PERSPECTIVE.forty_five:
+      forty_five()
     PERSPECTIVE.isometric:
       isometric()
     PERSPECTIVE.oblique_y:
@@ -37,9 +39,9 @@ func set_perspective(value):
       oblique_z()
 
 func _perspective(xx, xy, yx, yy, zx, zy):
-  x = Vector2(xx, xy)
-  y = Vector2(yx, yy)
-  z = Vector2(zx, zy)
+  x = SCALE * Vector2(xx, xy)
+  y = SCALE * Vector2(yx, yy)
+  z = SCALE * Vector2(zx, zy)
 
 func top_down():
   _perspective(1, 0, 0, 0, 0, 1)
