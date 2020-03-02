@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/node25d.png-deca325dc1330ad07256305d79ddc3ba.stex"
+path="res://.import/ysort25d.png-6a98fc5afc4ea1b837ef95034d21371f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/node25d/icons/node25d.png"
-dest_files=[ "res://.import/node25d.png-deca325dc1330ad07256305d79ddc3ba.stex" ]
+source_file="res://addons/node2dot5/icons/ysort25d.png"
+dest_files=[ "res://.import/ysort25d.png-6a98fc5afc4ea1b837ef95034d21371f.stex" ]
 
 [params]
 

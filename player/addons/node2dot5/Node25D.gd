@@ -2,9 +2,9 @@
 # The transformation of its 2D form is controlled by its 3D child.
 tool
 extends Node2D
-class_name Node25D, "res://addons/node25d/icons/node25d_icon.png"
+class_name Node25D, "res://addons/node2dot5/icons/node25d_icon.png"
 
-var Base25D = preload("res://25D/Basis25D.gd")
+var Base25D = preload("res://addons/node2dot5/Basis25D.gd")
 
 # SCALE is the number of 2D units in one 3D unit. Ideally, but not necessarily, an integer.
 const SCALE = 32

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shadowmath25d.png-829bb9aabf7e847ec9c9f29f41353471.stex"
+path="res://.import/kinematic_body_25d.png-e46a32b68e92ad3e0fb97a9e095ec7bc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/node25d/icons/shadowmath25d.png"
-dest_files=[ "res://.import/shadowmath25d.png-829bb9aabf7e847ec9c9f29f41353471.stex" ]
+source_file="res://addons/node2dot5/icons/kinematic_body_25d.png"
+dest_files=[ "res://.import/kinematic_body_25d.png-e46a32b68e92ad3e0fb97a9e095ec7bc.stex" ]
 
 [params]
 
