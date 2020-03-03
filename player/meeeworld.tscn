@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/node2dot5/Node.gd" type="Script" id=1]
 [ext_resource path="res://kunio/assets/stadium/grass_ground.png" type="Texture" id=2]
@@ -13,47 +13,12 @@ extents = Vector3( 13.25, 0.5, 5 )
 [sub_resource type="BoxShape" id=17]
 extents = Vector3( 0.08555, 0, 0.0589622 )
 
+[sub_resource type="PhysicsMaterial" id=18]
+bounce = 0.6
+
 [sub_resource type="SphereShape" id=2]
 margin = 0.01
 radius = 0.08
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 19
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 19
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 19
-atlas = ExtResource( 3 )
-region = Rect2( 0, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 19
-atlas = ExtResource( 3 )
-region = Rect2( 32, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 19
-atlas = ExtResource( 3 )
-region = Rect2( 0, 64, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 19
-atlas = ExtResource( 3 )
-region = Rect2( 32, 64, 32, 32 )
-
-[sub_resource type="SpriteFrames" id=9]
-animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 19
@@ -108,34 +73,27 @@ collision_mask = 1048575
 [node name="collision_shape" type="CollisionShape" parent="stadium/math"]
 shape = SubResource( 1 )
 
-[node name="testvision" type="Sprite3D" parent="stadium/math"]
-visible = false
-pixel_size = 0.0313
-axis = 1
-texture = ExtResource( 2 )
-
 [node name="stadiumsprite" type="Sprite" parent="stadium"]
 position = Vector2( -0.250336, 0 )
 texture = ExtResource( 2 )
 
 [node name="ball_shadow" type="Node2D" parent="."]
-position = Vector2( 7.03063e-05, 14.7475 )
+position = Vector2( 7.12913e-05, -0.0226522 )
 script = ExtResource( 1 )
-spatial_position = Vector3( 2.19707e-06, -0.651757, -1.07308e-06 )
+spatial_position = Vector3( 2.22785e-06, 0.001, -1.09214e-06 )
 
 [node name="math" type="KinematicBody" parent="ball_shadow"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19707e-06, -0.651757, -1.07308e-06 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22785e-06, 0.001, -1.09214e-06 )
 collision_layer = 16
 collision_mask = 16
 script = ExtResource( 5 )
 target_path = NodePath("../../ball/math")
 
 [node name="collision_shape" type="CollisionShape" parent="ball_shadow/math"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93268e-12, 0.652757, -7.10543e-13 )
 shape = SubResource( 17 )
 
 [node name="sprite" type="Sprite" parent="ball_shadow"]
-position = Vector2( 0.511547, -11.9361 )
+position = Vector2( 0.512, 2 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, -2 )
 
@@ -143,15 +101,13 @@ offset = Vector2( 0, -2 )
 script = ExtResource( 1 )
 
 [node name="math" type="RigidBody" parent="ball"]
+mass = 3.0
+physics_material_override = SubResource( 18 )
 script = ExtResource( 4 )
 
 [node name="collision_shape" type="CollisionShape" parent="ball/math"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0831283, 0 )
 shape = SubResource( 2 )
-
-[node name="animated_sprite_3d" type="AnimatedSprite3D" parent="ball/math"]
-visible = false
-frames = SubResource( 9 )
 
 [node name="animated_sprite" type="AnimatedSprite" parent="ball"]
 frames = SubResource( 16 )
