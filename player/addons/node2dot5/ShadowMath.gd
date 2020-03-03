@@ -5,6 +5,8 @@ tool
 extends KinematicBody
 class_name ShadowMath25D, "icons/shadowmath25d_icon.png"
 
+export(NodePath) onready var target_path setget set_target_path
+
 # The maximum distance below objects that shadows will appear (in 3D units).
 var shadow_length = 1000.0
 var _shadow_root: Node25D
@@ -18,8 +20,12 @@ func _shadow_math_filter(node) -> bool:
 
 func _ready():
   _shadow_root = get_parent()
-  _target_math = CollectionsUtil\
-    .find(funcref(self, "_shadow_math_filter"), _shadow_root.get_children())
+  _target_math = get_node(target_path)
+
+func set_target_path(value):
+    target_path = value
+    if has_node(value):
+      _target_math = get_node(value)
 
 func _process(_delta):
   if _target_math == null:
@@ -29,8 +35,10 @@ func _process(_delta):
   
   translation = _target_math.translation
   var k = move_and_collide(Vector3.DOWN * shadow_length)
-  if k == null:
-    _shadow_root.visible = false
-  else:
-    _shadow_root.visible = true
-    global_transform = transform
+  
+  if _shadow_root:
+    if k == null:
+      _shadow_root.visible = false
+    else:
+      _shadow_root.visible = true
+      global_transform = transform

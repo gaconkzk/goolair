@@ -8,7 +8,7 @@ class_name Node25D, "icons/node25d_icon.png"
 const SCALE = 32
 
 # Exported spatial position for editor usage.
-export(Vector3) onready var spatial_position setget set_spatial_position, get_spatial_position
+export(Vector3) var spatial_position setget set_spatial_position, get_spatial_position
 
 # GDScript throws errors when Basis25D is its own structure.
 # There is a broken implementation in a hidden folder.
