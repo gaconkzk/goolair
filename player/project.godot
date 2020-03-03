@@ -9,15 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Reference",
-"class": "Base25D",
+"base": "RigidBody",
+"class": "BallMath25D",
 "language": "GDScript",
-"path": "res://addons/node2dot5/Basis25D.gd"
+"path": "res://BallMath25D.gd"
 }, {
-"base": "KinematicBody",
-"class": "KinematicBody25D",
+"base": "Reference",
+"class": "Basis25D",
 "language": "GDScript",
-"path": "res://addons/node2dot5/KinematicBody25D.gd"
+"path": "res://addons/node2dot5/Basis.gd"
+}, {
+"base": "Reference",
+"class": "CollectionsUtil",
+"language": "GDScript",
+"path": "res://Collections.gd"
 }, {
 "base": "AnimatedSprite",
 "class": "NekAnimatedSprite",
@@ -27,13 +32,20 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Node25D",
 "language": "GDScript",
-"path": "res://addons/node2dot5/Node25D.gd"
+"path": "res://addons/node2dot5/Node.gd"
+}, {
+"base": "KinematicBody",
+"class": "ShadowMath25D",
+"language": "GDScript",
+"path": "res://addons/node2dot5/ShadowMath.gd"
 } ]
 _global_script_class_icons={
-"Base25D": "",
-"KinematicBody25D": "",
+"BallMath25D": "",
+"Basis25D": "",
+"CollectionsUtil": "",
 "NekAnimatedSprite": "",
-"Node25D": "res://addons/node2dot5/icons/node25d_icon.png"
+"Node25D": "res://addons/node2dot5/icons/node25d_icon.png",
+"ShadowMath25D": "res://addons/node2dot5/icons/shadowmath25d_icon.png"
 }
 
 [application]

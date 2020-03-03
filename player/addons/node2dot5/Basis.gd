@@ -7,7 +7,7 @@
 # Meaning, a top-down view has a Y axis component of (0, 0), with a Z axis component of (0, 1).
 # For a front side view, Y is (0, -1) and Z is (0, 0).
 # Remember that Godot's 2D mode has the Y axis pointing DOWN on the screen.
-class_name Base25D
+class_name Basis25D
 
 enum PERSPECTIVE { top_down, front_side, forty_five, isometric, oblique_y, oblique_z }
 

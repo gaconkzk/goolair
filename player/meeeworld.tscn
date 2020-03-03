@@ -1,8 +1,171 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://addons/node2dot5/Node25D.gd" type="Script" id=1]
+[ext_resource path="res://addons/node2dot5/Node.gd" type="Script" id=1]
+[ext_resource path="res://kunio/assets/stadium/grass_ground.png" type="Texture" id=2]
+[ext_resource path="res://kunio/assets/parts/ball.png" type="Texture" id=3]
+[ext_resource path="res://BallMath25D.gd" type="Script" id=4]
+[ext_resource path="res://addons/node2dot5/ShadowMath.gd" type="Script" id=5]
+[ext_resource path="res://kunio/assets/parts/shadows/ball.png" type="Texture" id=6]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 13.25, 0.5, 5 )
+
+[sub_resource type="SphereShape" id=2]
+margin = 0.01
+radius = 0.08
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 19
+atlas = ExtResource( 3 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "roll",
+"speed": 5.0
+} ]
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 0.5, 0.001, 0.125 )
 
 [node name="root" type="Node2D"]
 
-[node name="Node25D" type="Node2D" parent="."]
+[node name="stadium" type="Node2D" parent="."]
+position = Vector2( 0, 11.3137 )
 script = ExtResource( 1 )
+spatial_position = Vector3( 0, -0.5, 0 )
+
+[node name="math" type="StaticBody" parent="stadium"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+collision_layer = 1048575
+collision_mask = 1048575
+
+[node name="collision_shape" type="CollisionShape" parent="stadium/math"]
+shape = SubResource( 1 )
+
+[node name="testvision" type="Sprite3D" parent="stadium/math"]
+visible = false
+pixel_size = 0.0313
+axis = 1
+texture = ExtResource( 2 )
+
+[node name="stadiumsprite" type="Sprite" parent="stadium"]
+position = Vector2( -0.250336, 0 )
+texture = ExtResource( 2 )
+
+[node name="ball" type="Node2D" parent="."]
+position = Vector2( 0, -2.26274 )
+script = ExtResource( 1 )
+spatial_position = Vector3( 0, 0.1, 0 )
+
+[node name="math" type="RigidBody" parent="ball"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+script = ExtResource( 4 )
+
+[node name="collision_shape" type="CollisionShape" parent="ball/math"]
+shape = SubResource( 2 )
+
+[node name="animated_sprite_3d" type="AnimatedSprite3D" parent="ball/math"]
+visible = false
+frames = SubResource( 9 )
+
+[node name="animated_sprite" type="AnimatedSprite" parent="ball"]
+frames = SubResource( 16 )
+animation = "roll"
+offset = Vector2( 0, -7 )
+
+[node name="camera" type="Camera2D" parent="ball/animated_sprite"]
+current = true
+limit_left = -424
+limit_top = -149
+limit_right = 424
+limit_bottom = 169
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.35
+drag_margin_top = 0.45
+drag_margin_right = 0.35
+drag_margin_bottom = 0.45
+
+[node name="ball_shadow" type="Node2D" parent="."]
+position = Vector2( 0, 22401.1 )
+script = ExtResource( 1 )
+spatial_position = Vector3( 0, -990, 0 )
+
+[node name="math" type="KinematicBody" parent="ball_shadow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -990, 0 )
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 5 )
+
+[node name="collision_shape" type="CollisionShape" parent="ball_shadow/math"]
+shape = SubResource( 17 )
+
+[node name="sprite" type="Sprite" parent="ball_shadow"]
+texture = ExtResource( 6 )

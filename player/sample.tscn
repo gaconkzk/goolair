@@ -4,7 +4,7 @@
 [ext_resource path="res://kunio/stadium.tscn" type="PackedScene" id=2]
 [ext_resource path="res://kunio/ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://match.gd" type="Script" id=4]
-[ext_resource path="res://ball_shadow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://kunio/ball_shadow.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
