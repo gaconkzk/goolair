@@ -36,8 +36,9 @@ func _process(_delta):
   translation = _target_math.translation
   var k = move_and_collide(Vector3.DOWN * shadow_length)
   
+  var h = _target_math.get_parent().get_spatial_position()
   if _shadow_root:
-    if k == null:
+    if k == null || h.y <= 0.01:
       _shadow_root.visible = false
     else:
       _shadow_root.visible = true

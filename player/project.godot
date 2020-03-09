@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "Transform25D",
 "language": "GDScript",
 "path": "res://addons/node2dot5/Transform.gd"
+}, {
+"base": "Node",
+"class": "YSort25D",
+"language": "GDScript",
+"path": "res://addons/node2dot5/y_sort_25d.gd"
 } ]
 _global_script_class_icons={
 "BallMath25D": "",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 "NekAnimatedSprite": "",
 "Node25D": "res://addons/node2dot5/icons/node25d_icon.png",
 "ShadowMath25D": "res://addons/node2dot5/icons/shadowmath25d_icon.png",
-"Transform25D": ""
+"Transform25D": "",
+"YSort25D": "res://addons/node2dot5/icons/ysort25d_icon.png"
 }
 
 [application]

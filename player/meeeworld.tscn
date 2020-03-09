@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/node2dot5/Node.gd" type="Script" id=1]
 [ext_resource path="res://kunio/assets/stadium/grass_ground.png" type="Texture" id=2]
@@ -6,53 +6,54 @@
 [ext_resource path="res://BallMath25D.gd" type="Script" id=4]
 [ext_resource path="res://addons/node2dot5/ShadowMath.gd" type="Script" id=5]
 [ext_resource path="res://kunio/assets/parts/shadows/ball.png" type="Texture" id=6]
+[ext_resource path="res://addons/node2dot5/y_sort_25d.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 13.25, 0.5, 5 )
 
-[sub_resource type="BoxShape" id=17]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.08555, 0, 0.0589622 )
 
-[sub_resource type="PhysicsMaterial" id=18]
+[sub_resource type="PhysicsMaterial" id=3]
 bounce = 0.6
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SphereShape" id=4]
 margin = 0.01
 radius = 0.08
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=5]
 flags = 19
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=6]
 flags = 19
 atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=7]
 flags = 19
 atlas = ExtResource( 3 )
 region = Rect2( 0, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=8]
 flags = 19
 atlas = ExtResource( 3 )
 region = Rect2( 32, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=9]
 flags = 19
 atlas = ExtResource( 3 )
 region = Rect2( 0, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=10]
 flags = 19
 atlas = ExtResource( 3 )
 region = Rect2( 32, 64, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=16]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "roll",
 "speed": 5.0
@@ -61,7 +62,7 @@ animations = [ {
 [node name="root" type="Node2D"]
 
 [node name="stadium" type="Node2D" parent="."]
-position = Vector2( 0, 11.3137 )
+z_index = -4000
 script = ExtResource( 1 )
 spatial_position = Vector3( 0, -0.5, 0 )
 
@@ -78,19 +79,20 @@ position = Vector2( -0.250336, 0 )
 texture = ExtResource( 2 )
 
 [node name="ball_shadow" type="Node2D" parent="."]
-position = Vector2( 7.12913e-05, -0.0226522 )
+position = Vector2( 7.15591e-05, -3.4589e-05 )
+z_index = -3998
 script = ExtResource( 1 )
-spatial_position = Vector3( 2.22785e-06, 0.001, -1.09214e-06 )
+spatial_position = Vector3( 2.23622e-06, 0.000999987, -1.08091e-06 )
 
 [node name="math" type="KinematicBody" parent="ball_shadow"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22785e-06, 0.001, -1.09214e-06 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23622e-06, 0.000999987, -1.08091e-06 )
 collision_layer = 16
 collision_mask = 16
 script = ExtResource( 5 )
 target_path = NodePath("../../ball/math")
 
 [node name="collision_shape" type="CollisionShape" parent="ball_shadow/math"]
-shape = SubResource( 17 )
+shape = SubResource( 2 )
 
 [node name="sprite" type="Sprite" parent="ball_shadow"]
 position = Vector2( 0.512, 2 )
@@ -98,19 +100,22 @@ texture = ExtResource( 6 )
 offset = Vector2( 0, -2 )
 
 [node name="ball" type="Node2D" parent="."]
+z_index = -3996
 script = ExtResource( 1 )
+spatial_position = Vector3( 0, 1, 0 )
 
 [node name="math" type="RigidBody" parent="ball"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mass = 3.0
-physics_material_override = SubResource( 18 )
+physics_material_override = SubResource( 3 )
 script = ExtResource( 4 )
 
 [node name="collision_shape" type="CollisionShape" parent="ball/math"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0831283, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="animated_sprite" type="AnimatedSprite" parent="ball"]
-frames = SubResource( 16 )
+frames = SubResource( 11 )
 animation = "roll"
 offset = Vector2( 0, -7 )
 
@@ -127,3 +132,6 @@ drag_margin_left = 0.35
 drag_margin_top = 0.45
 drag_margin_right = 0.35
 drag_margin_bottom = 0.45
+
+[node name="YSort25D" type="Node" parent="."]
+script = ExtResource( 7 )
