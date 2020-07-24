@@ -40,7 +40,6 @@ func _process(delta):
   # View mode polling.
   var view_mode_changed_this_frame = false
   var new_view_mode = view_mode_button_group.get_pressed_button().get_index()
-  print('new view: ', new_view_mode)
   if view_mode_index != new_view_mode:
     view_mode_index = new_view_mode
     view_mode_changed_this_frame = true
